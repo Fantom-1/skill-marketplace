@@ -2,75 +2,93 @@ import json
 import os
 
 agent1_sites = [
-    # Tech / SaaS
-    "https://github.com", "https://gitlab.com", "https://bitbucket.org", "https://slack.com", "https://discord.com", 
-    "https://zoom.us", "https://salesforce.com", "https://hubspot.com", "https://atlassian.com", "https://jira.com",
-    # News / Media
-    "https://www.nytimes.com", "https://www.theguardian.com", "https://www.bbc.co.uk", "https://www.cnn.com", "https://www.foxnews.com", 
-    "https://www.washingtonpost.com", "https://www.wsj.com", "https://www.reuters.com", "https://www.bloomberg.com", "https://www.forbes.com",
-    # E-commerce
-    "https://www.amazon.com", "https://www.ebay.com", "https://www.walmart.com", "https://www.target.com", "https://www.bestbuy.com", 
-    "https://www.homedepot.com", "https://www.costco.com", "https://www.macys.com", "https://www.nordstrom.com", "https://www.gap.com",
-    # Education
-    "https://www.mit.edu", "https://www.stanford.edu", "https://www.harvard.edu", "https://www.yale.edu", "https://www.princeton.edu", 
-    "https://www.ox.ac.uk", "https://www.cam.ac.uk", "https://www.berkeley.edu", "https://www.ucla.edu", "https://umich.edu",
-    # Travel / Hospitality
-    "https://www.booking.com", "https://www.expedia.com", "https://www.airbnb.com", "https://www.tripadvisor.com", "https://www.kayak.com", 
-    "https://www.skyscanner.net", "https://www.marriott.com", "https://www.hilton.com", "https://www.hyatt.com", "https://www.ihg.com",
-    # Niche / Local / VC
-    "https://www.ycombinator.com", "https://a16z.com", "https://www.sequoiacap.com", "https://www.greylock.com", "https://www.benchmark.com", 
-    "https://www.viacarota.com", "https://vintageempire.shop", "https://katzsdelicatessen.com", "https://thehalalguys.com", "https://peterluger.com",
-    # Orgs
-    "https://www.nasa.gov", "https://www.who.int", "https://www.un.org", "https://www.weforum.org", "https://www.worldbank.org", 
-    "https://www.imf.org", "https://www.redcross.org", "https://www.amnesty.org", "https://www.wwe.com", "https://www.nfl.com"
+    # Pure Web3 & Heavy SPAs (Often blank HTML without JS, aggressive bot blocks)
+    "https://app.uniswap.org/", "https://opensea.io/", "https://pancakeswap.finance/", "https://blur.io/", "https://magiceden.io/",
+    "https://www.binance.com/en/trade/BTC_USDT", "https://curve.fi/", "https://app.aave.com/", "https://makerdao.com/", "https://lido.fi/",
+    
+    # Awwwards / High-Concept Portfolios (Canvas/WebGL heavy, terrible SEO)
+    "https://www.awwwards.com/", "https://bruno-arizio.com/", "https://www.kikk.be/", "https://madeintyo.com/", "https://www.dogstudio.co/",
+    "https://locomotive.ca/", "https://www.hellohektor.com/", "https://www.media-monks.com/", "https://activetheory.net/", "https://www.resn.co.nz/",
+    
+    # Obscure Local Restaurants (Embedded iFrames, PDF menus, no schema)
+    "https://www.katzsdelicatessen.com/", "https://www.lucali.com/", "https://www.joespizzanyc.com/", "https://www.peterluger.com/", "https://www.carminesnyc.com/",
+    "https://www.pizzeriabianco.com/", "https://www.franklinbbq.com/", "https://www.thefrenchlaundry.com/", "https://www.alinearestaurant.com/", "https://www.kappomifune.com/",
+    
+    # Old Forums / Deeply Nested (phpBB, vBulletin, terrible structure)
+    "https://forum.bodybuilding.com/", "https://www.wehrmacht-awards.com/forums/", "https://forums.somethingawful.com/", "https://www.head-fi.org/", "https://www.flyertalk.com/forum/",
+    "https://www.airliners.net/forum/", "https://www.skyscrapercity.com/", "https://forums.macrumors.com/", "https://www.bogleheads.org/forum/", "https://www.thefedoralounge.com/",
+    
+    # Aggressive Paywalls / Local Newspapers (Content hidden behind JS blockers)
+    "https://www.bostonglobe.com/", "https://www.seattletimes.com/", "https://www.chicagotribune.com/", "https://www.sfchronicle.com/", "https://www.dallasnews.com/",
+    "https://www.star-telegram.com/", "https://www.miamiherald.com/", "https://www.tampabay.com/", "https://www.ajc.com/", "https://www.philly.com/",
+    
+    # Complex International / Non-English (Encoding issues, foreign schemas)
+    "https://www.yahoo.co.jp/", "https://www.naver.com/", "https://www.daum.net/", "https://www.weibo.com/", "https://www.vk.com/",
+    "https://www.yandex.ru/", "https://www.uol.com.br/", "https://www.clarin.com/", "https://www.spiegel.de/", "https://www.lemonde.fr/",
+    
+    # Ad-Ridden / Content Mills (High noise, infinite scroll)
+    "https://www.ehow.com/", "https://www.wikihow.com/", "https://www.about.com/", "https://www.livestrong.com/", "https://www.theodysseyonline.com/",
+    "https://www.ranker.com/", "https://www.buzzfeed.com/", "https://www.boredpanda.com/", "https://www.cheezburger.com/", "https://www.failblog.org/"
 ]
 
 agent2_sites = [
-    # Tech / SaaS
-    "https://www.microsoft.com", "https://www.oracle.com", "https://www.ibm.com", "https://www.sap.com", "https://www.vmware.com", 
-    "https://www.cisco.com", "https://www.intel.com", "https://www.amd.com", "https://www.nvidia.com", "https://www.qualcomm.com",
-    # News / Media
-    "https://www.npr.org", "https://www.pbs.org", "https://www.huffpost.com", "https://www.buzzfeed.com", "https://www.vice.com", 
-    "https://www.vox.com", "https://www.theverge.com", "https://www.engadget.com", "https://techcrunch.com", "https://www.wired.com",
-    # E-commerce
-    "https://www.ikea.com", "https://www.wayfair.com", "https://www.overstock.com", "https://www.zara.com", "https://www.hm.com", 
-    "https://www.asos.com", "https://us.shein.com", "https://www.boohoo.com", "https://www.uniqlo.com", "https://shop.lululemon.com",
-    # Education
-    "https://www.cornell.edu", "https://www.columbia.edu", "https://www.upenn.edu", "https://www.brown.edu", "https://home.dartmouth.edu", 
-    "https://www.uchicago.edu", "https://www.northwestern.edu", "https://www.jhu.edu", "https://duke.edu", "https://www.vanderbilt.edu",
-    # Travel / Aviation
-    "https://www.delta.com", "https://www.united.com", "https://www.aa.com", "https://www.southwest.com", "https://www.jetblue.com", 
-    "https://www.alaskaair.com", "https://www.ryanair.com", "https://www.easyjet.com", "https://www.emirates.com", "https://www.qatarairways.com",
-    # Law / Niche
-    "https://www.bestlawyers.com", "https://www.superlawyers.com", "https://www.findlaw.com", "https://www.avvo.com", "https://www.legalzoom.com", 
-    "https://www.rocketlawyer.com", "https://www.nolo.com", "https://www.martindale.com", "https://www.lawline.com", "https://www.clio.com",
-    # Government / Health Orgs
-    "https://www.nih.gov", "https://www.cdc.gov", "https://www.fda.gov", "https://www.epa.gov", "https://www.ftc.gov", 
-    "https://www.fcc.gov", "https://www.faa.gov", "https://www.ntsb.gov", "https://www.sba.gov", "https://www.uspto.gov"
+    # Antiquated Academic / Raw HTML (Missing meta tags, ancient structures)
+    "https://cs.stanford.edu/", "https://www.math.rutgers.edu/", "https://www.physics.harvard.edu/", "https://www.chem.yale.edu/", "https://www.biology.columbia.edu/",
+    "https://www.english.upenn.edu/", "https://www.history.princeton.edu/", "https://www.philosophy.mit.edu/", "https://www.anthropology.berkeley.edu/", "https://www.sociology.ucla.edu/",
+    
+    # Local Government / Municipal (Weird table layouts, outdated CMS)
+    "https://www.a2gov.org/", "https://www.detroitmi.gov/", "https://www.cityofchicago.org/", "https://www.nyc.gov/", "https://www.lacity.org/",
+    "https://www.houstontx.gov/", "https://www.phila.gov/", "https://www.phoenix.gov/", "https://www.sandiego.gov/", "https://www.dallas.gov/",
+    
+    # Tiny Local Services (Plumbers, Roofers, no HTTPS, awful SEO)
+    "http://www.rotorooter.com/", "http://www.mrrooter.com/", "http://www.benjaminfranklinplumbing.com/", "http://www.aireserv.com/", "http://www.onehourair.com/",
+    "http://www.certapro.com/", "http://www.fivestarpainting.com/", "http://www.mollymaid.com/", "http://www.merrymaids.com/", "http://www.thecleaningauthority.com/",
+    
+    # Early 2000s / Web 1.0 (No schema, inline styles)
+    "http://www.spacejam.com/", "http://www.dolekemp96.org/", "http://www.zombo.com/", "http://www.angelfire.com/", "http://www.tripod.com/",
+    "http://www.geocities.ws/", "http://www.neopets.com/", "http://www.homestarrunner.com/", "http://www.newgrounds.com/", "http://www.ebaumsworld.com/",
+    
+    # Flash Replacements / PDF Only Menus
+    "https://www.in-n-out.com/", "https://www.whataburger.com/", "https://www.fiveguys.com/", "https://www.shakepeck.com/", "https://www.smashburger.com/",
+    "https://www.habitburger.com/", "https://www.fatburger.com/", "https://www.burbankburger.com/", "https://www.tommys.com/", "https://www.originaltommys.com/",
+    
+    # B2B Manufacturing / Obscure Industrial
+    "https://www.mcmaster.com/", "https://www.grainger.com/", "https://www.mscdirect.com/", "https://www.fastenal.com/", "https://www.uline.com/",
+    "https://www.globalindustrial.com/", "https://www.zoro.com/", "https://www.hdsupplysolutions.com/", "https://www.ferguson.com/", "https://www.winsupplyinc.com/",
+    
+    # Community Centers / Religious (Often built by volunteers, poor code)
+    "https://www.ymca.net/", "https://www.bgca.org/", "https://www.salvationarmyusa.org/", "https://www.habitat.org/", "https://www.goodwill.org/",
+    "https://www.unitedway.org/", "https://www.redcross.org/", "https://www.doctorswithoutborders.org/", "https://www.savethechildren.org/", "https://www.worldvision.org/"
 ]
 
 agent3_sites = [
-    # Tech / Cloud
-    "https://www.apple.com", "https://www.google.com", "https://about.meta.com", "https://www.amazon.jobs", "https://www.netflix.com", 
-    "https://www.spotify.com", "https://www.dropbox.com", "https://www.box.com", "https://www.docusign.com", "https://www.okta.com",
-    # News / Regional Media
-    "https://time.com", "https://www.newsweek.com", "https://www.usatoday.com", "https://nypost.com", "https://www.latimes.com", 
-    "https://www.chicagotribune.com", "https://www.boston.com", "https://www.seattletimes.com", "https://www.chron.com", "https://www.miamiherald.com",
-    # Creators / Platforms
-    "https://www.etsy.com", "https://www.shopify.com", "https://www.wix.com", "https://www.squarespace.com", "https://www.weebly.com", 
-    "https://www.gofundme.com", "https://www.kickstarter.com", "https://www.patreon.com", "https://www.indiegogo.com", "https://www.zillow.com",
-    # Public Univs
-    "https://www.washington.edu", "https://www.nyu.edu", "https://www.usc.edu", "https://www.utexas.edu", "https://www.tamu.edu", 
-    "https://www.ufl.edu", "https://www.umd.edu", "https://www.psu.edu", "https://www.osu.edu", "https://www.rutgers.edu",
-    # Auto / Rental
-    "https://www.hertz.com", "https://www.avis.com", "https://www.enterprise.com", "https://www.budget.com", "https://www.alamo.com", 
-    "https://www.nationalcar.com", "https://www.dollar.com", "https://www.thrifty.com", "https://www.zipcar.com", "https://turo.com",
-    # D2C Brands
-    "https://www.zappos.com", "https://www.allbirds.com", "https://www.buckmason.com", "https://www.warbyparker.com", "https://www.everlane.com", 
-    "https://www.outdoorvoices.com", "https://rothys.com", "https://casper.com", "https://www.glossier.com", "https://www.awaytravel.com",
-    # Core Gov
-    "https://www.whitehouse.gov", "https://www.senate.gov", "https://www.house.gov", "https://www.supremecourt.gov", "https://www.justice.gov", 
-    "https://www.state.gov", "https://www.defense.gov", "https://home.treasury.gov", "https://www.energy.gov", "https://www.ed.gov"
+    # Tiny Dropshipping / Shopify Stores (Dynamic JS, terrible load times)
+    "https://www.kyliecosmetics.com/", "https://www.gymshark.com/", "https://www.allbirds.com/", "https://www.fashionnova.com/", "https://www.colourpop.com/",
+    "https://www.chubbiesshorts.com/", "https://www.mvmt.com/", "https://www.puralavida.com/", "https://www.blendjet.com/", "https://www.sandandsky.com/",
+    
+    # Cloudflare / Bot Protected (Will trigger 403s or Captchas)
+    "https://chatgpt.com/", "https://www.ticketmaster.com/", "https://www.stubhub.com/", "https://www.livenation.com/", "https://www.axs.com/",
+    "https://www.eventbrite.com/", "https://www.seatgeek.com/", "https://www.vividseats.com/", "https://www.gametime.co/", "https://www.tickpick.com/",
+    
+    # Dynamic Booking / Ticketing (Content only loads after user interaction)
+    "https://www.airbnb.com/", "https://www.vrbo.com/", "https://www.booking.com/", "https://www.expedia.com/", "https://www.hotels.com/",
+    "https://www.kayak.com/", "https://www.skyscanner.com/", "https://www.priceline.com/", "https://www.orbitz.com/", "https://www.travelocity.com/",
+    
+    # Real Estate / MLS (Heavy IDX iframes, anti-scraping)
+    "https://www.zillow.com/", "https://www.trulia.com/", "https://www.realtor.com/", "https://www.redfin.com/", "https://www.apartments.com/",
+    "https://www.zumper.com/", "https://www.rent.com/", "https://www.apartmentguide.com/", "https://www.hotpads.com/", "https://www.streeteasy.com/",
+    
+    # Obscure Foreign E-commerce (Different currencies, weird meta tags)
+    "https://www.taobao.com/", "https://www.jd.com/", "https://www.rakuten.co.jp/", "https://www.flipkart.com/", "https://www.mercadolibre.com/",
+    "https://www.allegro.pl/", "https://www.ozon.ru/", "https://www.wildberries.ru/", "https://www.coupang.com/", "https://www.tokopedia.com/",
+    
+    # Sites with Massive Cookie Walls / Modals
+    "https://www.dailymail.co.uk/", "https://www.thesun.co.uk/", "https://www.mirror.co.uk/", "https://www.express.co.uk/", "https://www.telegraph.co.uk/",
+    "https://www.independent.co.uk/", "https://www.thetimes.co.uk/", "https://www.standard.co.uk/", "https://www.metro.co.uk/", "https://www.dailystar.co.uk/",
+    
+    # Aggressive Robots.txt (Strictly forbids AI bots, GPTBot, CCBot)
+    "https://www.nytimes.com/", "https://www.reuters.com/", "https://www.washingtonpost.com/", "https://www.theatlantic.com/", "https://www.bloomberg.com/",
+    "https://www.wsj.com/", "https://www.cnbc.com/", "https://www.businessinsider.com/", "https://www.ft.com/", "https://www.theguardian.com/"
 ]
 
 corpus = {
@@ -82,4 +100,4 @@ corpus = {
 with open("test_corpus.json", "w") as f:
     json.dump(corpus, f, indent=2)
 
-print(f"Generated test_corpus.json with {len(agent1_sites)} sites for agent1, {len(agent2_sites)} sites for agent2, and {len(agent3_sites)} sites for agent3.")
+print(f"Generated gritty test_corpus.json with {len(agent1_sites)} sites for agent1, {len(agent2_sites)} sites for agent2, and {len(agent3_sites)} sites for agent3.")
