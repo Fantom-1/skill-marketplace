@@ -1,0 +1,25 @@
+{
+  "agent1": [
+    "https://www.apple.com",        
+    "https://www.notion.so",       
+    "https://www.viacarota.com",   
+    "https://techcrunch.com",      
+    "https://www.nike.com"         
+  ],
+  "agent2": [
+    "https://www.github.com",      
+    "https://www.figma.com",       
+    "https://vintageempire.shop",  
+    "https://www.bbc.com",         
+    "https://www.allbirds.com",    
+    "https://www.linkedin.com"     
+  ],
+  "agent3": [
+    "https://www.microsoft.com",   
+    "https://www.asana.com",       
+    "https://www.bestlawyers.com", 
+    "https://elpais.com",          
+    "https://www.zappos.com",      
+    "https://www.lesswrong.com"    
+  ]
+}

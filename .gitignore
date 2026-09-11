@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+logs/
+brand-ai-readiness-audit.zip

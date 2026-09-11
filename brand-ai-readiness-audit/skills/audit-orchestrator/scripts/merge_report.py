@@ -79,21 +79,28 @@ def main():
         if sev in summary:
             summary[sev] += 1
             
-    # Add proactive recommendations
-    proactive = [
-        {
+    # Add proactive recommendations dynamically based on findings
+    proactive = []
+    
+    # Check if identity/schema was missing
+    has_identity_issue = any("IDENT-" in f.get('id', '') or "SCHEMA-" in f.get('id', '') for f in unique_findings)
+    if has_identity_issue:
+        proactive.append({
             "id": "R-001",
             "title": "Establish a consistent Knowledge Graph presence",
             "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
             "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
-        },
-        {
+        })
+        
+    # Check if crawl issues exist
+    has_crawl_issue = any("CRAWL-" in f.get('id', '') for f in unique_findings)
+    if has_crawl_issue:
+        proactive.append({
             "id": "R-002",
             "title": "Publish an AI Policy / Terms of Service",
             "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
             "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
-        }
-    ]
+        })
     
     report = {
         "site": domain,

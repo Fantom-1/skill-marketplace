@@ -245,6 +245,22 @@ def main():
     try:
         resp = requests.get(url, headers=headers, timeout=15)
         html = resp.text
+        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
+            all_findings.append({
+                "id": "SKILLS-BLOCKED",
+                "skill_source": "skills",
+                "category": "discoverability",
+                "title": f"Site Blocked Bot Access ({resp.status_code})",
+                "severity": "critical",
+                "evidence": f"Status: {resp.status_code}. Content indicates bot challenge or block.",
+                "suggested_action": {
+                    "summary": "Allow AI crawlers",
+                    "detail": "Configure WAF/Cloudflare to whitelist known AI crawlers.",
+                    "priority": "critical",
+                    "effort": "low"
+                }
+            })
+            return all_findings
         size = len(resp.content)
         
         # HTML Signals
