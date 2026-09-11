@@ -21,7 +21,7 @@ python scripts/run_pipeline.py agent1
 ```
 
 ### What happens under the hood?
-1. The script reads `test_corpus.json` from the root directory. This JSON file contains an array of 5-6 highly diverse test sites specifically assigned to you (including SPAs, heavily protected sites, e-commerce, etc.).
+1. The script reads `test_corpus.json` from the root directory. This JSON file contains an array of exactly 70 highly diverse test sites specifically assigned to you (including SPAs, heavily protected sites, e-commerce, media, tech, universities, and D2C brands).
 2. The pipeline sequentially executes the `audit-orchestrator` (`merge_report.py`) against your assigned sites.
 3. It captures the raw JSON outputs and saves them in the `logs/agent1/` directory (e.g., `logs/agent1/www_apple_com.json`).
 4. It automatically analyzes the results for crashes, bot-blocking failures, and false-positive anomalies (e.g., flagging if Apple.com throws too many critical errors).

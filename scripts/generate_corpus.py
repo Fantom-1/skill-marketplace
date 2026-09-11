@@ -1,0 +1,85 @@
+import json
+import os
+
+agent1_sites = [
+    # Tech / SaaS
+    "https://github.com", "https://gitlab.com", "https://bitbucket.org", "https://slack.com", "https://discord.com", 
+    "https://zoom.us", "https://salesforce.com", "https://hubspot.com", "https://atlassian.com", "https://jira.com",
+    # News / Media
+    "https://www.nytimes.com", "https://www.theguardian.com", "https://www.bbc.co.uk", "https://www.cnn.com", "https://www.foxnews.com", 
+    "https://www.washingtonpost.com", "https://www.wsj.com", "https://www.reuters.com", "https://www.bloomberg.com", "https://www.forbes.com",
+    # E-commerce
+    "https://www.amazon.com", "https://www.ebay.com", "https://www.walmart.com", "https://www.target.com", "https://www.bestbuy.com", 
+    "https://www.homedepot.com", "https://www.costco.com", "https://www.macys.com", "https://www.nordstrom.com", "https://www.gap.com",
+    # Education
+    "https://www.mit.edu", "https://www.stanford.edu", "https://www.harvard.edu", "https://www.yale.edu", "https://www.princeton.edu", 
+    "https://www.ox.ac.uk", "https://www.cam.ac.uk", "https://www.berkeley.edu", "https://www.ucla.edu", "https://umich.edu",
+    # Travel / Hospitality
+    "https://www.booking.com", "https://www.expedia.com", "https://www.airbnb.com", "https://www.tripadvisor.com", "https://www.kayak.com", 
+    "https://www.skyscanner.net", "https://www.marriott.com", "https://www.hilton.com", "https://www.hyatt.com", "https://www.ihg.com",
+    # Niche / Local / VC
+    "https://www.ycombinator.com", "https://a16z.com", "https://www.sequoiacap.com", "https://www.greylock.com", "https://www.benchmark.com", 
+    "https://www.viacarota.com", "https://vintageempire.shop", "https://katzsdelicatessen.com", "https://thehalalguys.com", "https://peterluger.com",
+    # Orgs
+    "https://www.nasa.gov", "https://www.who.int", "https://www.un.org", "https://www.weforum.org", "https://www.worldbank.org", 
+    "https://www.imf.org", "https://www.redcross.org", "https://www.amnesty.org", "https://www.wwe.com", "https://www.nfl.com"
+]
+
+agent2_sites = [
+    # Tech / SaaS
+    "https://www.microsoft.com", "https://www.oracle.com", "https://www.ibm.com", "https://www.sap.com", "https://www.vmware.com", 
+    "https://www.cisco.com", "https://www.intel.com", "https://www.amd.com", "https://www.nvidia.com", "https://www.qualcomm.com",
+    # News / Media
+    "https://www.npr.org", "https://www.pbs.org", "https://www.huffpost.com", "https://www.buzzfeed.com", "https://www.vice.com", 
+    "https://www.vox.com", "https://www.theverge.com", "https://www.engadget.com", "https://techcrunch.com", "https://www.wired.com",
+    # E-commerce
+    "https://www.ikea.com", "https://www.wayfair.com", "https://www.overstock.com", "https://www.zara.com", "https://www.hm.com", 
+    "https://www.asos.com", "https://us.shein.com", "https://www.boohoo.com", "https://www.uniqlo.com", "https://shop.lululemon.com",
+    # Education
+    "https://www.cornell.edu", "https://www.columbia.edu", "https://www.upenn.edu", "https://www.brown.edu", "https://home.dartmouth.edu", 
+    "https://www.uchicago.edu", "https://www.northwestern.edu", "https://www.jhu.edu", "https://duke.edu", "https://www.vanderbilt.edu",
+    # Travel / Aviation
+    "https://www.delta.com", "https://www.united.com", "https://www.aa.com", "https://www.southwest.com", "https://www.jetblue.com", 
+    "https://www.alaskaair.com", "https://www.ryanair.com", "https://www.easyjet.com", "https://www.emirates.com", "https://www.qatarairways.com",
+    # Law / Niche
+    "https://www.bestlawyers.com", "https://www.superlawyers.com", "https://www.findlaw.com", "https://www.avvo.com", "https://www.legalzoom.com", 
+    "https://www.rocketlawyer.com", "https://www.nolo.com", "https://www.martindale.com", "https://www.lawline.com", "https://www.clio.com",
+    # Government / Health Orgs
+    "https://www.nih.gov", "https://www.cdc.gov", "https://www.fda.gov", "https://www.epa.gov", "https://www.ftc.gov", 
+    "https://www.fcc.gov", "https://www.faa.gov", "https://www.ntsb.gov", "https://www.sba.gov", "https://www.uspto.gov"
+]
+
+agent3_sites = [
+    # Tech / Cloud
+    "https://www.apple.com", "https://www.google.com", "https://about.meta.com", "https://www.amazon.jobs", "https://www.netflix.com", 
+    "https://www.spotify.com", "https://www.dropbox.com", "https://www.box.com", "https://www.docusign.com", "https://www.okta.com",
+    # News / Regional Media
+    "https://time.com", "https://www.newsweek.com", "https://www.usatoday.com", "https://nypost.com", "https://www.latimes.com", 
+    "https://www.chicagotribune.com", "https://www.boston.com", "https://www.seattletimes.com", "https://www.chron.com", "https://www.miamiherald.com",
+    # Creators / Platforms
+    "https://www.etsy.com", "https://www.shopify.com", "https://www.wix.com", "https://www.squarespace.com", "https://www.weebly.com", 
+    "https://www.gofundme.com", "https://www.kickstarter.com", "https://www.patreon.com", "https://www.indiegogo.com", "https://www.zillow.com",
+    # Public Univs
+    "https://www.washington.edu", "https://www.nyu.edu", "https://www.usc.edu", "https://www.utexas.edu", "https://www.tamu.edu", 
+    "https://www.ufl.edu", "https://www.umd.edu", "https://www.psu.edu", "https://www.osu.edu", "https://www.rutgers.edu",
+    # Auto / Rental
+    "https://www.hertz.com", "https://www.avis.com", "https://www.enterprise.com", "https://www.budget.com", "https://www.alamo.com", 
+    "https://www.nationalcar.com", "https://www.dollar.com", "https://www.thrifty.com", "https://www.zipcar.com", "https://turo.com",
+    # D2C Brands
+    "https://www.zappos.com", "https://www.allbirds.com", "https://www.buckmason.com", "https://www.warbyparker.com", "https://www.everlane.com", 
+    "https://www.outdoorvoices.com", "https://rothys.com", "https://casper.com", "https://www.glossier.com", "https://www.awaytravel.com",
+    # Core Gov
+    "https://www.whitehouse.gov", "https://www.senate.gov", "https://www.house.gov", "https://www.supremecourt.gov", "https://www.justice.gov", 
+    "https://www.state.gov", "https://www.defense.gov", "https://home.treasury.gov", "https://www.energy.gov", "https://www.ed.gov"
+]
+
+corpus = {
+    "agent1": agent1_sites,
+    "agent2": agent2_sites,
+    "agent3": agent3_sites
+}
+
+with open("test_corpus.json", "w") as f:
+    json.dump(corpus, f, indent=2)
+
+print(f"Generated test_corpus.json with {len(agent1_sites)} sites for agent1, {len(agent2_sites)} sites for agent2, and {len(agent3_sites)} sites for agent3.")
