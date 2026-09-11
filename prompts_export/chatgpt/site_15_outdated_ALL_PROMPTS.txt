@@ -1,0 +1,139 @@
+======================================================================
+SITE 15: Outdated Site | AGENT: CHATGPT
+======================================================================
+
+NOTE: Run each prompt below SEPARATELY in CHATGPT.
+Copy the AI's response for each prompt into the corresponding
+response file in: responses/chatgpt/
+
+
+======================================================================
+PROMPT 1/6: Direct Brand Recall
+Save response to: responses/chatgpt/site_15_outdated_prompt_01.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Visit ONLY [outdated site URL]. Based solely on what you can read and extract from this site, describe what this site does, what content they offer, and who their target audience is. Cite the specific pages and text passages you extracted this information from. Do not use any external sources.
+
+
+======================================================================
+PROMPT 2/6: Factual Extraction Under Constraint
+Save response to: responses/chatgpt/site_15_outdated_prompt_02.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Go to [outdated site URL] and extract the following factual data points from the site only:
+(a) Founding year or site age
+(b) Content focus or topics
+(c) Contact information
+(d) Key claims they make
+
+For each fact, quote the exact text and the page URL where you found it. If you cannot find a data point, state 'NOT FOUND on site' and explain what made it unfindable.
+
+
+======================================================================
+PROMPT 3/6: Structured Data & Machine Readability
+Save response to: responses/chatgpt/site_15_outdated_prompt_03.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Fetch [outdated site URL] and analyze only its HTML source. Report:
+(a) Does it have JSON-LD or schema.org structured data? What types?
+(b) Are there OpenGraph meta tags? List them.
+(c) Is the main content available in the raw HTML or does it require JavaScript rendering?
+(d) Does robots.txt or meta tags block any AI crawlers?
+
+Provide the raw evidence for each answer.
+
+
+======================================================================
+PROMPT 4/6: Task Completion Test
+Save response to: responses/chatgpt/site_15_outdated_prompt_04.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Task: Find the 3 most recent articles. Give me the title, date, and a one-line summary of each.
+
+Using ONLY [outdated site URL], help me complete this task. Walk through the exact pages you visited and what you found on each. If you hit a dead end, describe what blocked you. Do not leave this website.
+
+
+======================================================================
+PROMPT 5/6: Content Depth & Freshness
+Save response to: responses/chatgpt/site_15_outdated_prompt_05.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Visit ONLY [outdated site URL]. Assess the content freshness and depth:
+(a) What is the most recent date you can find on any page? Where?
+(b) Are there updates or recent content? What's the latest?
+(c) Is the content substantive or thin?
+(d) Can you find any facts that appear outdated or contradictory? Quote your evidence from the site only.
+
+
+======================================================================
+PROMPT 6/6: Navigation & Orientation
+Save response to: responses/chatgpt/site_15_outdated_prompt_06.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Starting from the homepage of [outdated site URL] only, describe:
+(a) Can you understand what this site does within the first screen of content? Quote what tells you.
+(b) How many clicks to reach different sections?
+(c) Is there clear navigation? List the main nav items.
+(d) Are there internal links guiding you deeper?
+(e) Is there anything confusing, broken, or missing that would make a first-time visitor bounce? Evidence from the site only.
+

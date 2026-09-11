@@ -1,0 +1,35 @@
+{
+  "site": "example.com",
+  "audited_at": "2026-09-20T14:32:00Z",
+  "summary": {
+    "total_findings": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "skill_source": "string",
+      "category": "discoverability | engagement",
+      "title": "string",
+      "severity": "critical | high | medium | low",
+      "evidence": "string",
+      "suggested_action": {
+        "summary": "string",
+        "detail": "string",
+        "priority": "critical | high | medium | low",
+        "effort": "low | medium | high"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "string",
+      "rationale": "string",
+      "suggested_action": "string"
+    }
+  ]
+}

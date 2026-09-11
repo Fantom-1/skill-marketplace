@@ -1,0 +1,13 @@
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Task: Find their pricing page, list all plan tiers, and tell me what the free plan includes.
+
+Using ONLY https://www.notion.so, help me complete this task. Walk through the exact pages you visited and what you found on each. If you hit a dead end, describe what blocked you. Do not leave this website.

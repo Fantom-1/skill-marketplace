@@ -1,0 +1,139 @@
+======================================================================
+SITE 19: Buffer | AGENT: PERPLEXITY
+======================================================================
+
+NOTE: Run each prompt below SEPARATELY in PERPLEXITY.
+Copy the AI's response for each prompt into the corresponding
+response file in: responses/perplexity/
+
+
+======================================================================
+PROMPT 1/6: Direct Brand Recall
+Save response to: responses/perplexity/site_19_buffer_prompt_01.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Visit ONLY https://buffer.com. Based solely on what you can read and extract from this site, describe what Buffer does, what products/services they offer, and who their target audience is. Cite the specific pages and text passages you extracted this information from. Do not use any external sources.
+
+
+======================================================================
+PROMPT 2/6: Factual Extraction Under Constraint
+Save response to: responses/perplexity/site_19_buffer_prompt_02.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Go to https://buffer.com and extract the following factual data points from the site only:
+(a) Founding year or company age
+(b) Product lines or services offered
+(c) Contact information or headquarters
+(d) Key differentiators they claim (positioning, approach)
+
+For each fact, quote the exact text and the page URL where you found it. If you cannot find a data point, state 'NOT FOUND on site' and explain what made it unfindable.
+
+
+======================================================================
+PROMPT 3/6: Structured Data & Machine Readability
+Save response to: responses/perplexity/site_19_buffer_prompt_03.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Fetch https://buffer.com and analyze only its HTML source. Report:
+(a) Does it have JSON-LD or schema.org structured data? What types? (Organization, SoftwareApplication, etc.)
+(b) Are there OpenGraph meta tags? List them.
+(c) Is the main content available in the raw HTML or does it require JavaScript rendering?
+(d) Does robots.txt or meta tags block any AI crawlers?
+
+Provide the raw evidence for each answer.
+
+
+======================================================================
+PROMPT 4/6: Task Completion Test
+Save response to: responses/perplexity/site_19_buffer_prompt_04.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Task: Find their leadership team, mission statement, and what markets they operate in.
+
+Using ONLY https://buffer.com, help me complete this task. Walk through the exact pages you visited and what you found on each. If you hit a dead end, describe what blocked you. Do not leave this website.
+
+
+======================================================================
+PROMPT 5/6: Content Depth & Freshness
+Save response to: responses/perplexity/site_19_buffer_prompt_05.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Visit ONLY https://buffer.com. Assess the content freshness and depth:
+(a) What is the most recent date you can find on any page? Where?
+(b) Are there blog posts, updates, or resources? What's the latest?
+(c) Is the content substantive (detailed guides, case studies) or thin?
+(d) Can you find any facts that appear outdated or contradictory? Quote your evidence from the site only.
+
+
+======================================================================
+PROMPT 6/6: Navigation & Orientation
+Save response to: responses/perplexity/site_19_buffer_prompt_06.md
+======================================================================
+
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Starting from the homepage of https://buffer.com only, describe:
+(a) Can you understand what Buffer does within the first screen of content? Quote what tells you.
+(b) How many clicks to reach important sections (product, about, resources)?
+(c) Is there clear navigation? List the main nav items.
+(d) Are there internal links guiding you deeper into company information or resources?
+(e) Is there anything confusing or missing that would make a first-time visitor bounce? Evidence from the site only.
+

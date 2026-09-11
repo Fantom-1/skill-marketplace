@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(rm -f \"D:/Skills-Marketplace/responses/chatgpt/\"*.md)",
+      "Bash(rm -f \"D:/Skills-Marketplace/responses/gemini/\"*.md)",
+      "Bash(rm -f \"D:/Skills-Marketplace/responses/perplexity/\"*.md)"
+    ]
+  }
+}

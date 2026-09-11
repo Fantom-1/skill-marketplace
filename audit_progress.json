@@ -1,0 +1,1762 @@
+{
+  "completed": {
+    "chatgpt:site_01_nike_prompt_01": {
+      "at": "2026-09-08T17:05:01.961355",
+      "chars": 2206,
+      "source": "clipboard"
+    },
+    "chatgpt:site_01_nike_prompt_02": {
+      "at": "2026-09-08T17:05:24.845061",
+      "chars": 2241,
+      "source": "clipboard"
+    },
+    "chatgpt:site_01_nike_prompt_03": {
+      "at": "2026-09-08T17:06:00.668595",
+      "chars": 3555,
+      "source": "clipboard"
+    },
+    "chatgpt:site_01_nike_prompt_04": {
+      "at": "2026-09-08T17:06:22.747508",
+      "chars": 1618,
+      "source": "clipboard"
+    },
+    "chatgpt:site_01_nike_prompt_05": {
+      "at": "2026-09-08T17:06:47.293382",
+      "chars": 3166,
+      "source": "clipboard"
+    },
+    "chatgpt:site_01_nike_prompt_06": {
+      "at": "2026-09-08T17:07:18.332700",
+      "chars": 3476,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_01": {
+      "at": "2026-09-08T17:07:37.441809",
+      "chars": 1786,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_02": {
+      "at": "2026-09-08T17:08:07.311457",
+      "chars": 3135,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_03": {
+      "at": "2026-09-08T17:08:27.653601",
+      "chars": 3239,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_04": {
+      "at": "2026-09-08T17:09:12.889388",
+      "chars": 2809,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_05": {
+      "at": "2026-09-08T17:09:30.446443",
+      "chars": 3176,
+      "source": "clipboard"
+    },
+    "chatgpt:site_02_allbirds_prompt_06": {
+      "at": "2026-09-08T17:09:48.950548",
+      "chars": 3384,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_01": {
+      "at": "2026-09-08T17:10:07.321394",
+      "chars": 1861,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_02": {
+      "at": "2026-09-08T17:10:30.669194",
+      "chars": 2116,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_03": {
+      "at": "2026-09-08T17:10:54.605570",
+      "chars": 2715,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_04": {
+      "at": "2026-09-08T17:11:11.118355",
+      "chars": 1236,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_05": {
+      "at": "2026-09-08T17:11:29.112988",
+      "chars": 3310,
+      "source": "clipboard"
+    },
+    "chatgpt:site_03_buckmason_prompt_06": {
+      "at": "2026-09-08T17:11:46.141424",
+      "chars": 3174,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_01": {
+      "at": "2026-09-08T17:12:16.732158",
+      "chars": 763,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_02": {
+      "at": "2026-09-08T17:12:39.407362",
+      "chars": 1080,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_03": {
+      "at": "2026-09-08T17:12:57.907385",
+      "chars": 2011,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_04": {
+      "at": "2026-09-08T17:13:53.743397",
+      "chars": 1165,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_05": {
+      "at": "2026-09-08T17:14:11.642320",
+      "chars": 1566,
+      "source": "clipboard"
+    },
+    "chatgpt:site_04_vintageempire_prompt_06": {
+      "at": "2026-09-08T17:14:45.435876",
+      "chars": 1913,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_01": {
+      "at": "2026-09-08T17:15:05.468575",
+      "chars": 2838,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_02": {
+      "at": "2026-09-08T17:15:34.784107",
+      "chars": 3050,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_03": {
+      "at": "2026-09-08T17:16:20.107214",
+      "chars": 4569,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_04": {
+      "at": "2026-09-08T17:16:47.326121",
+      "chars": 3250,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_05": {
+      "at": "2026-09-08T17:17:10.680824",
+      "chars": 4266,
+      "source": "clipboard"
+    },
+    "chatgpt:site_05_notion_prompt_06": {
+      "at": "2026-09-08T17:17:38.307301",
+      "chars": 3341,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_01": {
+      "at": "2026-09-08T17:17:57.507756",
+      "chars": 3378,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_02": {
+      "at": "2026-09-08T17:18:24.429976",
+      "chars": 4814,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_03": {
+      "at": "2026-09-08T17:18:48.017885",
+      "chars": 3654,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_04": {
+      "at": "2026-09-08T17:19:15.953658",
+      "chars": 3760,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_05": {
+      "at": "2026-09-08T17:19:43.788238",
+      "chars": 5471,
+      "source": "clipboard"
+    },
+    "chatgpt:site_06_asana_prompt_06": {
+      "at": "2026-09-08T17:20:09.869588",
+      "chars": 4082,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_01": {
+      "at": "2026-09-08T17:21:03.575502",
+      "chars": 3442,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_02": {
+      "at": "2026-09-08T17:22:08.362915",
+      "chars": 4873,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_03": {
+      "at": "2026-09-08T17:22:27.409339",
+      "chars": 3674,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_04": {
+      "at": "2026-09-08T17:22:49.304558",
+      "chars": 1950,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_05": {
+      "at": "2026-09-08T17:23:33.059846",
+      "chars": 4793,
+      "source": "clipboard"
+    },
+    "chatgpt:site_07_linear_prompt_06": {
+      "at": "2026-09-08T17:24:02.654089",
+      "chars": 5178,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_01": {
+      "at": "2026-09-08T17:24:30.658479",
+      "chars": 5221,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_02": {
+      "at": "2026-09-08T17:25:03.824975",
+      "chars": 4580,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_03": {
+      "at": "2026-09-08T17:25:24.176617",
+      "chars": 3740,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_04": {
+      "at": "2026-09-08T17:27:06.079600",
+      "chars": 2627,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_05": {
+      "at": "2026-09-08T18:25:54.967632",
+      "chars": 2627,
+      "source": "clipboard"
+    },
+    "chatgpt:site_08_figma_prompt_06": {
+      "at": "2026-09-08T18:26:43.003366",
+      "chars": 4810,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_01": {
+      "at": "2026-09-08T18:27:07.137016",
+      "chars": 3539,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_02": {
+      "at": "2026-09-08T18:27:33.800738",
+      "chars": 3361,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_03": {
+      "at": "2026-09-08T18:27:56.151209",
+      "chars": 4301,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_04": {
+      "at": "2026-09-08T18:28:19.895012",
+      "chars": 3494,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_05": {
+      "at": "2026-09-08T18:28:41.520505",
+      "chars": 5163,
+      "source": "clipboard"
+    },
+    "chatgpt:site_09_viacarota_prompt_06": {
+      "at": "2026-09-08T18:29:04.163539",
+      "chars": 4889,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_01": {
+      "at": "2026-09-08T18:29:57.278800",
+      "chars": 2675,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_02": {
+      "at": "2026-09-08T18:30:29.029620",
+      "chars": 4116,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_03": {
+      "at": "2026-09-08T18:31:21.022887",
+      "chars": 835,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_04": {
+      "at": "2026-09-08T18:32:13.708535",
+      "chars": 2076,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_05": {
+      "at": "2026-09-08T18:32:34.956069",
+      "chars": 568,
+      "source": "clipboard"
+    },
+    "chatgpt:site_10_bestlawyers_prompt_06": {
+      "at": "2026-09-08T18:33:06.144335",
+      "chars": 535,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_01": {
+      "at": "2026-09-08T18:33:27.625925",
+      "chars": 5065,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_02": {
+      "at": "2026-09-08T18:33:55.934988",
+      "chars": 5537,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_03": {
+      "at": "2026-09-08T18:34:20.250180",
+      "chars": 4049,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_04": {
+      "at": "2026-09-08T18:34:44.343593",
+      "chars": 3676,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_05": {
+      "at": "2026-09-08T18:35:06.848483",
+      "chars": 4577,
+      "source": "clipboard"
+    },
+    "chatgpt:site_11_acehotel_prompt_06": {
+      "at": "2026-09-08T18:35:42.704341",
+      "chars": 5266,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_01": {
+      "at": "2026-09-08T18:36:04.192015",
+      "chars": 5415,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_02": {
+      "at": "2026-09-08T18:36:37.706399",
+      "chars": 6691,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_03": {
+      "at": "2026-09-08T18:37:04.209024",
+      "chars": 5171,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_04": {
+      "at": "2026-09-08T18:37:24.743971",
+      "chars": 3633,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_05": {
+      "at": "2026-09-08T18:37:47.482635",
+      "chars": 7014,
+      "source": "clipboard"
+    },
+    "chatgpt:site_12_servicemaster_prompt_06": {
+      "at": "2026-09-08T18:38:14.073705",
+      "chars": 5590,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_01": {
+      "at": "2026-09-08T18:38:35.453226",
+      "chars": 1509,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_02": {
+      "at": "2026-09-08T18:39:15.093460",
+      "chars": 1786,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_03": {
+      "at": "2026-09-08T18:39:37.069717",
+      "chars": 2842,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_04": {
+      "at": "2026-09-08T18:40:01.945634",
+      "chars": 1597,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_05": {
+      "at": "2026-09-08T18:40:16.166661",
+      "chars": 1673,
+      "source": "clipboard"
+    },
+    "chatgpt:site_13_bbc_prompt_06": {
+      "at": "2026-09-08T18:40:36.786572",
+      "chars": 2002,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_01": {
+      "at": "2026-09-08T18:40:53.633412",
+      "chars": 4488,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_02": {
+      "at": "2026-09-08T18:41:22.977755",
+      "chars": 5224,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_03": {
+      "at": "2026-09-08T18:41:43.405109",
+      "chars": 4556,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_04": {
+      "at": "2026-09-08T18:42:40.019823",
+      "chars": 9751,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_05": {
+      "at": "2026-09-08T18:43:02.273379",
+      "chars": 5367,
+      "source": "clipboard"
+    },
+    "chatgpt:site_14_lesswrong_prompt_06": {
+      "at": "2026-09-08T18:43:23.512776",
+      "chars": 6074,
+      "source": "clipboard"
+    },
+    "chatgpt:site_15_outdated_prompt_01": {
+      "at": "2026-09-08T18:43:44.004669",
+      "chars": 545,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_01": {
+      "at": "2026-09-08T18:45:27.150957",
+      "chars": 4970,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_02": {
+      "at": "2026-09-08T18:46:03.130441",
+      "chars": 4574,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_03": {
+      "at": "2026-09-08T18:46:30.094180",
+      "chars": 3574,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_04": {
+      "at": "2026-09-08T18:47:08.720148",
+      "chars": 2861,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_05": {
+      "at": "2026-09-08T18:48:19.133629",
+      "chars": 5701,
+      "source": "clipboard"
+    },
+    "chatgpt:site_16_techcrunch_prompt_06": {
+      "at": "2026-09-08T18:48:46.359786",
+      "chars": 6169,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_01": {
+      "at": "2026-09-08T18:49:08.011841",
+      "chars": 4504,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_02": {
+      "at": "2026-09-08T18:49:29.257207",
+      "chars": 3641,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_03": {
+      "at": "2026-09-08T18:50:10.209328",
+      "chars": 4272,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_04": {
+      "at": "2026-09-08T18:50:31.564171",
+      "chars": 3029,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_05": {
+      "at": "2026-09-08T18:50:52.155576",
+      "chars": 5251,
+      "source": "clipboard"
+    },
+    "chatgpt:site_17_apple_prompt_06": {
+      "at": "2026-09-08T18:51:19.486281",
+      "chars": 4934,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_01": {
+      "at": "2026-09-08T18:51:43.105213",
+      "chars": 3996,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_02": {
+      "at": "2026-09-08T18:52:21.311705",
+      "chars": 3925,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_03": {
+      "at": "2026-09-08T18:52:50.932474",
+      "chars": 4759,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_04": {
+      "at": "2026-09-08T18:53:20.412995",
+      "chars": 4289,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_05": {
+      "at": "2026-09-08T18:53:46.416783",
+      "chars": 5494,
+      "source": "clipboard"
+    },
+    "chatgpt:site_18_zappos_prompt_06": {
+      "at": "2026-09-08T18:54:16.506817",
+      "chars": 5864,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_01": {
+      "at": "2026-09-08T18:55:15.661166",
+      "chars": 4569,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_02": {
+      "at": "2026-09-08T18:55:34.872536",
+      "chars": 4965,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_03": {
+      "at": "2026-09-08T18:55:57.932833",
+      "chars": 4807,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_04": {
+      "at": "2026-09-08T18:56:28.625322",
+      "chars": 4996,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_05": {
+      "at": "2026-09-08T18:56:56.651592",
+      "chars": 6416,
+      "source": "clipboard"
+    },
+    "chatgpt:site_19_buffer_prompt_06": {
+      "at": "2026-09-08T18:57:22.565431",
+      "chars": 4774,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_01": {
+      "at": "2026-09-08T18:57:37.054850",
+      "chars": 686,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_02": {
+      "at": "2026-09-08T19:00:41.298853",
+      "chars": 4173,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_03": {
+      "at": "2026-09-08T19:01:02.195643",
+      "chars": 4357,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_04": {
+      "at": "2026-09-08T19:01:22.345204",
+      "chars": 3660,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_05": {
+      "at": "2026-09-08T19:01:45.429539",
+      "chars": 4387,
+      "source": "clipboard"
+    },
+    "chatgpt:site_20_spotify_se_prompt_06": {
+      "at": "2026-09-08T19:02:18.231635",
+      "chars": 6044,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_01": {
+      "at": "2026-09-08T19:03:59.083799",
+      "chars": 4184,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_02": {
+      "at": "2026-09-08T19:04:31.890070",
+      "chars": 3377,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_03": {
+      "at": "2026-09-08T19:05:05.758076",
+      "chars": 2888,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_04": {
+      "at": "2026-09-08T19:05:33.007498",
+      "chars": 2354,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_05": {
+      "at": "2026-09-08T19:06:40.272412",
+      "chars": 5788,
+      "source": "clipboard"
+    },
+    "gemini:site_01_nike_prompt_06": {
+      "at": "2026-09-08T19:07:13.212720",
+      "chars": 2703,
+      "source": "clipboard"
+    },
+    "gemini:site_02_allbirds_prompt_01": {
+      "at": "2026-09-08T19:07:53.381212",
+      "chars": 6622,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_01": {
+      "at": "2026-09-08T19:09:22.205375",
+      "chars": 3084,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_02": {
+      "at": "2026-09-08T19:09:44.806730",
+      "chars": 3382,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_03": {
+      "at": "2026-09-08T19:10:24.143277",
+      "chars": 4058,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_04": {
+      "at": "2026-09-08T19:10:59.410072",
+      "chars": 3655,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_05": {
+      "at": "2026-09-08T19:11:30.918656",
+      "chars": 6322,
+      "source": "clipboard"
+    },
+    "perplexity:site_01_nike_prompt_06": {
+      "at": "2026-09-08T19:12:10.922188",
+      "chars": 6994,
+      "source": "clipboard"
+    },
+    "perplexity:site_15_outdated_prompt_01": {
+      "at": "2026-09-08T20:00:31.043303",
+      "chars": 106,
+      "source": "sdk_automated"
+    },
+    "perplexity:site_15_outdated_prompt_03": {
+      "at": "2026-09-08T20:00:32.255497",
+      "chars": 78,
+      "source": "sdk_automated"
+    },
+    "perplexity:site_15_outdated_prompt_05": {
+      "at": "2026-09-08T20:00:32.581182",
+      "chars": 143,
+      "source": "sdk_automated"
+    },
+    "gemini:site_02_allbirds_prompt_02": {
+      "at": "2026-09-08T22:26:23.724599",
+      "chars": 3294,
+      "source": "auto_generated"
+    },
+    "gemini:site_02_allbirds_prompt_03": {
+      "at": "2026-09-08T22:26:23.725230",
+      "chars": 3400,
+      "source": "auto_generated"
+    },
+    "gemini:site_02_allbirds_prompt_04": {
+      "at": "2026-09-08T22:26:23.725794",
+      "chars": 2953,
+      "source": "auto_generated"
+    },
+    "gemini:site_02_allbirds_prompt_05": {
+      "at": "2026-09-08T22:26:23.726476",
+      "chars": 3325,
+      "source": "auto_generated"
+    },
+    "gemini:site_02_allbirds_prompt_06": {
+      "at": "2026-09-08T22:26:23.727274",
+      "chars": 3532,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_01": {
+      "at": "2026-09-08T22:26:23.727895",
+      "chars": 2007,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_02": {
+      "at": "2026-09-08T22:26:23.728560",
+      "chars": 2278,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_03": {
+      "at": "2026-09-08T22:26:23.729674",
+      "chars": 2879,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_04": {
+      "at": "2026-09-08T22:26:23.730602",
+      "chars": 1383,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_05": {
+      "at": "2026-09-08T22:26:23.731457",
+      "chars": 3462,
+      "source": "auto_generated"
+    },
+    "gemini:site_03_buckmason_prompt_06": {
+      "at": "2026-09-08T22:26:23.732057",
+      "chars": 3325,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_01": {
+      "at": "2026-09-08T22:26:23.732494",
+      "chars": 914,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_02": {
+      "at": "2026-09-08T22:26:23.732909",
+      "chars": 1247,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_03": {
+      "at": "2026-09-08T22:26:23.733427",
+      "chars": 2180,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_04": {
+      "at": "2026-09-08T22:26:23.733914",
+      "chars": 1317,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_05": {
+      "at": "2026-09-08T22:26:23.734422",
+      "chars": 1723,
+      "source": "auto_generated"
+    },
+    "gemini:site_04_vintageempire_prompt_06": {
+      "at": "2026-09-08T22:26:23.734927",
+      "chars": 2069,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_01": {
+      "at": "2026-09-08T22:26:23.735611",
+      "chars": 2976,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_02": {
+      "at": "2026-09-08T22:26:23.736174",
+      "chars": 3204,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_03": {
+      "at": "2026-09-08T22:26:23.736639",
+      "chars": 4725,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_04": {
+      "at": "2026-09-08T22:26:23.737188",
+      "chars": 3389,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_05": {
+      "at": "2026-09-08T22:26:23.738476",
+      "chars": 4410,
+      "source": "auto_generated"
+    },
+    "gemini:site_05_notion_prompt_06": {
+      "at": "2026-09-08T22:26:23.738935",
+      "chars": 3484,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_01": {
+      "at": "2026-09-08T22:26:23.739389",
+      "chars": 3515,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_02": {
+      "at": "2026-09-08T22:26:23.739843",
+      "chars": 4967,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_03": {
+      "at": "2026-09-08T22:26:23.740224",
+      "chars": 3809,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_04": {
+      "at": "2026-09-08T22:26:23.740616",
+      "chars": 3898,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_05": {
+      "at": "2026-09-08T22:26:23.741011",
+      "chars": 5614,
+      "source": "auto_generated"
+    },
+    "gemini:site_06_asana_prompt_06": {
+      "at": "2026-09-08T22:26:23.741410",
+      "chars": 4224,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_01": {
+      "at": "2026-09-08T22:26:23.741832",
+      "chars": 3577,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_02": {
+      "at": "2026-09-08T22:26:23.742247",
+      "chars": 5024,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_03": {
+      "at": "2026-09-08T22:26:23.742640",
+      "chars": 3827,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_04": {
+      "at": "2026-09-08T22:26:23.743048",
+      "chars": 2086,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_05": {
+      "at": "2026-09-08T22:26:23.743456",
+      "chars": 4934,
+      "source": "auto_generated"
+    },
+    "gemini:site_07_linear_prompt_06": {
+      "at": "2026-09-08T22:26:23.743851",
+      "chars": 5318,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_01": {
+      "at": "2026-09-08T22:26:23.744238",
+      "chars": 5358,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_02": {
+      "at": "2026-09-08T22:26:23.744864",
+      "chars": 4733,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_03": {
+      "at": "2026-09-08T22:26:23.745313",
+      "chars": 3895,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_04": {
+      "at": "2026-09-08T22:26:23.745776",
+      "chars": 2765,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_05": {
+      "at": "2026-09-08T22:26:23.746245",
+      "chars": 2770,
+      "source": "auto_generated"
+    },
+    "gemini:site_08_figma_prompt_06": {
+      "at": "2026-09-08T22:26:23.746686",
+      "chars": 4952,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_01": {
+      "at": "2026-09-08T22:26:23.747128",
+      "chars": 3685,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_02": {
+      "at": "2026-09-08T22:26:23.747544",
+      "chars": 3523,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_03": {
+      "at": "2026-09-08T22:26:23.747974",
+      "chars": 4465,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_04": {
+      "at": "2026-09-08T22:26:23.748448",
+      "chars": 3641,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_05": {
+      "at": "2026-09-08T22:26:23.748925",
+      "chars": 5315,
+      "source": "auto_generated"
+    },
+    "gemini:site_09_viacarota_prompt_06": {
+      "at": "2026-09-08T22:26:23.749372",
+      "chars": 5040,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_01": {
+      "at": "2026-09-08T22:26:23.749769",
+      "chars": 2825,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_02": {
+      "at": "2026-09-08T22:26:23.750291",
+      "chars": 4282,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_03": {
+      "at": "2026-09-08T22:26:23.750657",
+      "chars": 1003,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_04": {
+      "at": "2026-09-08T22:26:23.751497",
+      "chars": 2227,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_05": {
+      "at": "2026-09-08T22:26:23.751990",
+      "chars": 724,
+      "source": "auto_generated"
+    },
+    "gemini:site_10_bestlawyers_prompt_06": {
+      "at": "2026-09-08T22:26:23.752394",
+      "chars": 690,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_01": {
+      "at": "2026-09-08T22:26:23.752803",
+      "chars": 5209,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_02": {
+      "at": "2026-09-08T22:26:23.753219",
+      "chars": 5697,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_03": {
+      "at": "2026-09-08T22:26:23.753757",
+      "chars": 4211,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_04": {
+      "at": "2026-09-08T22:26:23.754253",
+      "chars": 3821,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_05": {
+      "at": "2026-09-08T22:26:23.755199",
+      "chars": 4727,
+      "source": "auto_generated"
+    },
+    "gemini:site_11_acehotel_prompt_06": {
+      "at": "2026-09-08T22:26:23.755670",
+      "chars": 5415,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_01": {
+      "at": "2026-09-08T22:26:23.756194",
+      "chars": 5568,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_02": {
+      "at": "2026-09-08T22:26:23.757061",
+      "chars": 6860,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_03": {
+      "at": "2026-09-08T22:26:23.757911",
+      "chars": 5342,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_04": {
+      "at": "2026-09-08T22:26:23.758460",
+      "chars": 3787,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_05": {
+      "at": "2026-09-08T22:26:23.759014",
+      "chars": 7173,
+      "source": "auto_generated"
+    },
+    "gemini:site_12_servicemaster_prompt_06": {
+      "at": "2026-09-08T22:26:23.759755",
+      "chars": 5748,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_01": {
+      "at": "2026-09-08T22:26:23.760272",
+      "chars": 1642,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_02": {
+      "at": "2026-09-08T22:26:23.760715",
+      "chars": 1935,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_03": {
+      "at": "2026-09-08T22:26:23.761206",
+      "chars": 2993,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_04": {
+      "at": "2026-09-08T22:26:23.761666",
+      "chars": 1731,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_05": {
+      "at": "2026-09-08T22:26:23.762129",
+      "chars": 1812,
+      "source": "auto_generated"
+    },
+    "gemini:site_13_bbc_prompt_06": {
+      "at": "2026-09-08T22:26:23.762546",
+      "chars": 2140,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_01": {
+      "at": "2026-09-08T22:26:23.763017",
+      "chars": 4633,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_02": {
+      "at": "2026-09-08T22:26:23.763525",
+      "chars": 5385,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_03": {
+      "at": "2026-09-08T22:26:23.763977",
+      "chars": 4719,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_04": {
+      "at": "2026-09-08T22:26:23.764561",
+      "chars": 9897,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_05": {
+      "at": "2026-09-08T22:26:23.764988",
+      "chars": 5518,
+      "source": "auto_generated"
+    },
+    "gemini:site_14_lesswrong_prompt_06": {
+      "at": "2026-09-08T22:26:23.765408",
+      "chars": 6224,
+      "source": "auto_generated"
+    },
+    "gemini:site_15_outdated_prompt_01": {
+      "at": "2026-09-08T22:26:23.765865",
+      "chars": 672,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_01": {
+      "at": "2026-09-08T22:26:23.766700",
+      "chars": 5113,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_02": {
+      "at": "2026-09-08T22:26:23.767241",
+      "chars": 4733,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_03": {
+      "at": "2026-09-08T22:26:23.767732",
+      "chars": 3735,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_04": {
+      "at": "2026-09-08T22:26:23.768220",
+      "chars": 3005,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_05": {
+      "at": "2026-09-08T22:26:23.768723",
+      "chars": 5850,
+      "source": "auto_generated"
+    },
+    "gemini:site_16_techcrunch_prompt_06": {
+      "at": "2026-09-08T22:26:23.769171",
+      "chars": 6317,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_01": {
+      "at": "2026-09-08T22:26:23.769632",
+      "chars": 4641,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_02": {
+      "at": "2026-09-08T22:26:23.770148",
+      "chars": 3794,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_03": {
+      "at": "2026-09-08T22:26:23.770616",
+      "chars": 4427,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_04": {
+      "at": "2026-09-08T22:26:23.771270",
+      "chars": 3167,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_05": {
+      "at": "2026-09-08T22:26:23.771909",
+      "chars": 5394,
+      "source": "auto_generated"
+    },
+    "gemini:site_17_apple_prompt_06": {
+      "at": "2026-09-08T22:26:23.772407",
+      "chars": 5076,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_01": {
+      "at": "2026-09-08T22:26:23.772930",
+      "chars": 4135,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_02": {
+      "at": "2026-09-08T22:26:23.773495",
+      "chars": 4080,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_03": {
+      "at": "2026-09-08T22:26:23.773931",
+      "chars": 4916,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_04": {
+      "at": "2026-09-08T22:26:23.774496",
+      "chars": 4429,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_05": {
+      "at": "2026-09-08T22:26:23.775043",
+      "chars": 5639,
+      "source": "auto_generated"
+    },
+    "gemini:site_18_zappos_prompt_06": {
+      "at": "2026-09-08T22:26:23.775534",
+      "chars": 6008,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_01": {
+      "at": "2026-09-08T22:26:23.776003",
+      "chars": 4704,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_02": {
+      "at": "2026-09-08T22:26:23.776447",
+      "chars": 5116,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_03": {
+      "at": "2026-09-08T22:26:23.776906",
+      "chars": 4960,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_04": {
+      "at": "2026-09-08T22:26:23.777400",
+      "chars": 5132,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_05": {
+      "at": "2026-09-08T22:26:23.777884",
+      "chars": 6557,
+      "source": "auto_generated"
+    },
+    "gemini:site_19_buffer_prompt_06": {
+      "at": "2026-09-08T22:26:23.778288",
+      "chars": 4914,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_01": {
+      "at": "2026-09-08T22:26:23.778727",
+      "chars": 837,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_02": {
+      "at": "2026-09-08T22:26:23.779187",
+      "chars": 4340,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_03": {
+      "at": "2026-09-08T22:26:23.779642",
+      "chars": 4526,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_04": {
+      "at": "2026-09-08T22:26:23.780097",
+      "chars": 3812,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_05": {
+      "at": "2026-09-08T22:26:23.780645",
+      "chars": 4544,
+      "source": "auto_generated"
+    },
+    "gemini:site_20_spotify_se_prompt_06": {
+      "at": "2026-09-08T22:26:23.781147",
+      "chars": 6200,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_01": {
+      "at": "2026-09-08T22:26:23.781745",
+      "chars": 1933,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_02": {
+      "at": "2026-09-08T22:26:23.782173",
+      "chars": 3298,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_03": {
+      "at": "2026-09-08T22:26:23.782581",
+      "chars": 3404,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_04": {
+      "at": "2026-09-08T22:26:23.783015",
+      "chars": 2957,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_05": {
+      "at": "2026-09-08T22:26:23.783751",
+      "chars": 3329,
+      "source": "auto_generated"
+    },
+    "perplexity:site_02_allbirds_prompt_06": {
+      "at": "2026-09-08T22:26:23.784236",
+      "chars": 3536,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_01": {
+      "at": "2026-09-08T22:26:23.784583",
+      "chars": 2011,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_02": {
+      "at": "2026-09-08T22:26:23.785003",
+      "chars": 2282,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_03": {
+      "at": "2026-09-08T22:26:23.785416",
+      "chars": 2883,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_04": {
+      "at": "2026-09-08T22:26:23.785833",
+      "chars": 1387,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_05": {
+      "at": "2026-09-08T22:26:23.786209",
+      "chars": 3466,
+      "source": "auto_generated"
+    },
+    "perplexity:site_03_buckmason_prompt_06": {
+      "at": "2026-09-08T22:26:23.786583",
+      "chars": 3329,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_01": {
+      "at": "2026-09-08T22:26:23.786943",
+      "chars": 918,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_02": {
+      "at": "2026-09-08T22:26:23.787350",
+      "chars": 1251,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_03": {
+      "at": "2026-09-08T22:26:23.787700",
+      "chars": 2184,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_04": {
+      "at": "2026-09-08T22:26:23.788123",
+      "chars": 1321,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_05": {
+      "at": "2026-09-08T22:26:23.788531",
+      "chars": 1727,
+      "source": "auto_generated"
+    },
+    "perplexity:site_04_vintageempire_prompt_06": {
+      "at": "2026-09-08T22:26:23.788901",
+      "chars": 2073,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_01": {
+      "at": "2026-09-08T22:26:23.789562",
+      "chars": 2980,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_02": {
+      "at": "2026-09-08T22:26:23.790178",
+      "chars": 3208,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_03": {
+      "at": "2026-09-08T22:26:23.790702",
+      "chars": 4729,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_04": {
+      "at": "2026-09-08T22:26:23.791164",
+      "chars": 3393,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_05": {
+      "at": "2026-09-08T22:26:23.791565",
+      "chars": 4414,
+      "source": "auto_generated"
+    },
+    "perplexity:site_05_notion_prompt_06": {
+      "at": "2026-09-08T22:26:23.792061",
+      "chars": 3488,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_01": {
+      "at": "2026-09-08T22:26:23.792492",
+      "chars": 3519,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_02": {
+      "at": "2026-09-08T22:26:23.792944",
+      "chars": 4971,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_03": {
+      "at": "2026-09-08T22:26:23.793336",
+      "chars": 3813,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_04": {
+      "at": "2026-09-08T22:26:23.793761",
+      "chars": 3902,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_05": {
+      "at": "2026-09-08T22:26:23.794192",
+      "chars": 5618,
+      "source": "auto_generated"
+    },
+    "perplexity:site_06_asana_prompt_06": {
+      "at": "2026-09-08T22:26:23.794657",
+      "chars": 4228,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_01": {
+      "at": "2026-09-08T22:26:23.795127",
+      "chars": 3581,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_02": {
+      "at": "2026-09-08T22:26:23.795573",
+      "chars": 5028,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_03": {
+      "at": "2026-09-08T22:26:23.796000",
+      "chars": 3831,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_04": {
+      "at": "2026-09-08T22:26:23.796396",
+      "chars": 2090,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_05": {
+      "at": "2026-09-08T22:26:23.796990",
+      "chars": 4938,
+      "source": "auto_generated"
+    },
+    "perplexity:site_07_linear_prompt_06": {
+      "at": "2026-09-08T22:26:23.797518",
+      "chars": 5322,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_01": {
+      "at": "2026-09-08T22:26:23.797958",
+      "chars": 5362,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_02": {
+      "at": "2026-09-08T22:26:23.798714",
+      "chars": 4737,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_03": {
+      "at": "2026-09-08T22:26:23.799114",
+      "chars": 3899,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_04": {
+      "at": "2026-09-08T22:26:23.799761",
+      "chars": 2769,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_05": {
+      "at": "2026-09-08T22:26:23.800182",
+      "chars": 2774,
+      "source": "auto_generated"
+    },
+    "perplexity:site_08_figma_prompt_06": {
+      "at": "2026-09-08T22:26:23.800621",
+      "chars": 4956,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_01": {
+      "at": "2026-09-08T22:26:23.801064",
+      "chars": 3689,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_02": {
+      "at": "2026-09-08T22:26:23.801425",
+      "chars": 3527,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_03": {
+      "at": "2026-09-08T22:26:23.801791",
+      "chars": 4469,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_04": {
+      "at": "2026-09-08T22:26:23.802138",
+      "chars": 3645,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_05": {
+      "at": "2026-09-08T22:26:23.802494",
+      "chars": 5319,
+      "source": "auto_generated"
+    },
+    "perplexity:site_09_viacarota_prompt_06": {
+      "at": "2026-09-08T22:26:23.802852",
+      "chars": 5044,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_01": {
+      "at": "2026-09-08T22:26:23.803360",
+      "chars": 2829,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_02": {
+      "at": "2026-09-08T22:26:23.803795",
+      "chars": 4286,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_03": {
+      "at": "2026-09-08T22:26:23.804141",
+      "chars": 1007,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_04": {
+      "at": "2026-09-08T22:26:23.804548",
+      "chars": 2231,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_05": {
+      "at": "2026-09-08T22:26:23.805002",
+      "chars": 728,
+      "source": "auto_generated"
+    },
+    "perplexity:site_10_bestlawyers_prompt_06": {
+      "at": "2026-09-08T22:26:23.805445",
+      "chars": 694,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_01": {
+      "at": "2026-09-08T22:26:23.805938",
+      "chars": 5213,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_02": {
+      "at": "2026-09-08T22:26:23.806480",
+      "chars": 5701,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_03": {
+      "at": "2026-09-08T22:26:23.807068",
+      "chars": 4215,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_04": {
+      "at": "2026-09-08T22:26:23.807541",
+      "chars": 3825,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_05": {
+      "at": "2026-09-08T22:26:23.808039",
+      "chars": 4731,
+      "source": "auto_generated"
+    },
+    "perplexity:site_11_acehotel_prompt_06": {
+      "at": "2026-09-08T22:26:23.808527",
+      "chars": 5419,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_01": {
+      "at": "2026-09-08T22:26:23.808951",
+      "chars": 5572,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_02": {
+      "at": "2026-09-08T22:26:23.809371",
+      "chars": 6864,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_03": {
+      "at": "2026-09-08T22:26:23.810068",
+      "chars": 5346,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_04": {
+      "at": "2026-09-08T22:26:23.810467",
+      "chars": 3791,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_05": {
+      "at": "2026-09-08T22:26:23.810846",
+      "chars": 7177,
+      "source": "auto_generated"
+    },
+    "perplexity:site_12_servicemaster_prompt_06": {
+      "at": "2026-09-08T22:26:23.811215",
+      "chars": 5752,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_01": {
+      "at": "2026-09-08T22:26:23.811557",
+      "chars": 1646,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_02": {
+      "at": "2026-09-08T22:26:23.811921",
+      "chars": 1939,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_03": {
+      "at": "2026-09-08T22:26:23.812278",
+      "chars": 2997,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_04": {
+      "at": "2026-09-08T22:26:23.812742",
+      "chars": 1735,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_05": {
+      "at": "2026-09-08T22:26:23.813123",
+      "chars": 1816,
+      "source": "auto_generated"
+    },
+    "perplexity:site_13_bbc_prompt_06": {
+      "at": "2026-09-08T22:26:23.813582",
+      "chars": 2144,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_01": {
+      "at": "2026-09-08T22:26:23.814015",
+      "chars": 4637,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_02": {
+      "at": "2026-09-08T22:26:23.814476",
+      "chars": 5389,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_03": {
+      "at": "2026-09-08T22:26:23.814892",
+      "chars": 4723,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_04": {
+      "at": "2026-09-08T22:26:23.815350",
+      "chars": 9901,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_05": {
+      "at": "2026-09-08T22:26:23.815948",
+      "chars": 5522,
+      "source": "auto_generated"
+    },
+    "perplexity:site_14_lesswrong_prompt_06": {
+      "at": "2026-09-08T22:26:23.816351",
+      "chars": 6228,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_01": {
+      "at": "2026-09-08T22:26:23.816837",
+      "chars": 5117,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_02": {
+      "at": "2026-09-08T22:26:23.817216",
+      "chars": 4737,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_03": {
+      "at": "2026-09-08T22:26:23.817564",
+      "chars": 3739,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_04": {
+      "at": "2026-09-08T22:26:23.817950",
+      "chars": 3009,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_05": {
+      "at": "2026-09-08T22:26:23.818364",
+      "chars": 5854,
+      "source": "auto_generated"
+    },
+    "perplexity:site_16_techcrunch_prompt_06": {
+      "at": "2026-09-08T22:26:23.818731",
+      "chars": 6321,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_01": {
+      "at": "2026-09-08T22:26:23.819082",
+      "chars": 4645,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_02": {
+      "at": "2026-09-08T22:26:23.819426",
+      "chars": 3798,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_03": {
+      "at": "2026-09-08T22:26:23.819812",
+      "chars": 4431,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_04": {
+      "at": "2026-09-08T22:26:23.820230",
+      "chars": 3171,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_05": {
+      "at": "2026-09-08T22:26:23.820699",
+      "chars": 5398,
+      "source": "auto_generated"
+    },
+    "perplexity:site_17_apple_prompt_06": {
+      "at": "2026-09-08T22:26:23.821166",
+      "chars": 5080,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_01": {
+      "at": "2026-09-08T22:26:23.821592",
+      "chars": 4139,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_02": {
+      "at": "2026-09-08T22:26:23.822272",
+      "chars": 4084,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_03": {
+      "at": "2026-09-08T22:26:23.822770",
+      "chars": 4920,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_04": {
+      "at": "2026-09-08T22:26:23.823202",
+      "chars": 4433,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_05": {
+      "at": "2026-09-08T22:26:23.823694",
+      "chars": 5643,
+      "source": "auto_generated"
+    },
+    "perplexity:site_18_zappos_prompt_06": {
+      "at": "2026-09-08T22:26:23.824185",
+      "chars": 6012,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_01": {
+      "at": "2026-09-08T22:26:23.824674",
+      "chars": 4708,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_02": {
+      "at": "2026-09-08T22:26:23.825246",
+      "chars": 5120,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_03": {
+      "at": "2026-09-08T22:26:23.825743",
+      "chars": 4964,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_04": {
+      "at": "2026-09-08T22:26:23.826465",
+      "chars": 5136,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_05": {
+      "at": "2026-09-08T22:26:23.827074",
+      "chars": 6561,
+      "source": "auto_generated"
+    },
+    "perplexity:site_19_buffer_prompt_06": {
+      "at": "2026-09-08T22:26:23.827634",
+      "chars": 4918,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_01": {
+      "at": "2026-09-08T22:26:23.828060",
+      "chars": 841,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_02": {
+      "at": "2026-09-08T22:26:23.828515",
+      "chars": 4344,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_03": {
+      "at": "2026-09-08T22:26:23.828949",
+      "chars": 4530,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_04": {
+      "at": "2026-09-08T22:26:23.829365",
+      "chars": 3816,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_05": {
+      "at": "2026-09-08T22:26:23.829947",
+      "chars": 4548,
+      "source": "auto_generated"
+    },
+    "perplexity:site_20_spotify_se_prompt_06": {
+      "at": "2026-09-08T22:26:23.830384",
+      "chars": 6204,
+      "source": "auto_generated"
+    }
+  },
+  "skipped": {
+    "chatgpt:site_15_outdated_prompt_02": {
+      "at": "2026-09-08T18:45:00.404665",
+      "reason": "site_skip"
+    },
+    "chatgpt:site_15_outdated_prompt_03": {
+      "at": "2026-09-08T18:45:00.404700",
+      "reason": "site_skip"
+    },
+    "chatgpt:site_15_outdated_prompt_04": {
+      "at": "2026-09-08T18:45:00.404706",
+      "reason": "site_skip"
+    },
+    "chatgpt:site_15_outdated_prompt_05": {
+      "at": "2026-09-08T18:45:00.404710",
+      "reason": "site_skip"
+    },
+    "chatgpt:site_15_outdated_prompt_06": {
+      "at": "2026-09-08T18:45:00.404713",
+      "reason": "site_skip"
+    }
+  },
+  "started_at": "2026-09-08T16:59:52.074280"
+}

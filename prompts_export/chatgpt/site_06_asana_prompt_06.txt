@@ -1,0 +1,16 @@
+IMPORTANT INSTRUCTIONS — READ BEFORE RESPONDING:
+- Do NOT sugarcoat, speculate, or fill gaps with assumptions. State only raw, verifiable facts you directly extracted.
+- If you visit any URL, provide the FULL URL (e.g., https://www.example.com/about) not just "the about page".
+- Quote exact text from the site in quotation marks. If you cannot find something, say "NOT FOUND on site" — do not guess.
+- Do NOT visit, reference, or pull information from any website other than the one specified. Zero external sources.
+- Format your response with clear headings for each sub-question (a), (b), (c), etc.
+- Provide raw evidence: HTML snippets, exact meta tag values, exact text passages. No paraphrasing.
+
+---
+
+Starting from the homepage of https://www.asana.com only, describe:
+(a) Can you understand what this company does within the first screen of content? Quote what tells you.
+(b) How many clicks to reach the most important conversion page (pricing/product/contact)?
+(c) Is there clear navigation? List the main nav items.
+(d) Are there internal links guiding you deeper?
+(e) Is there anything confusing or missing that would make a first-time visitor bounce? Evidence from the site only.
