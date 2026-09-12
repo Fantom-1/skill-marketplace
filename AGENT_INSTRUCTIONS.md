@@ -35,19 +35,13 @@ Once the pipeline finishes, it will generate an analysis report:
 3. **Patch the Skills:** Navigate to the `brand-ai-readiness-audit/skills/` directory and modify the underlying Python scripts (`crawl_check.py`, `engagement_check.py`, etc.) to fix the bugs or adjust the heuristic thresholds. 
    - *Example: If `engagement_check.py` is flagging "Thin content" on a site that you know is an SPA, you need to update `engagement_check.py` to be smarter about JS-rendered text.*
 
-## 4. Evaluate and Tune
-Your specific assignment focuses exclusively on `identity_check.py` and `engagement_check.py`.
-1. Review the output logs for your 70 sites. 
-2. Identify False Positives / False Negatives:
-   - Is `engagement_check.py` flagging modern SPAs (like Uniswap) as having "Thin Content" just because it can't render JS?
-   - Is `identity_check.py` failing to extract phone numbers or social links from local businesses?
-3. Tune the logic in your assigned scripts (adjust word-count thresholds, add specific edge cases for SPAs, or refine regexes).
-4. Re-run the pipeline to ensure your fixes worked.
-
-## 5. Push Your Code
-Once your pipeline runs cleanly with accurate diagnostics, commit your code and push:
+## 4. Iterate and Commit
+1. Re-run the pipeline to ensure your fixes worked and didn't cause regressions on your other sites.
+2. Once your pipeline runs cleanly with zero crashes and zero flagged anomalies, commit your code and logs.
 ```bash
 git add .
-git commit -m "agent1: Tuned heuristics for identity and engagement"
-git push origin agent1
+git commit -m "agent1: Fixed SPA engagement bug and tuned schema threshold"
+git push
 ```
+
+
