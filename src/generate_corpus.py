@@ -28,7 +28,14 @@ agent1_sites = [
     
     # Ad-Ridden / Content Mills (High noise, infinite scroll)
     "https://www.ehow.com/", "https://www.wikihow.com/", "https://www.about.com/", "https://www.livestrong.com/", "https://www.theodysseyonline.com/",
-    "https://www.ranker.com/", "https://www.buzzfeed.com/", "https://www.boredpanda.com/", "https://www.cheezburger.com/", "https://www.failblog.org/"
+    "https://www.ranker.com/", "https://www.buzzfeed.com/", "https://www.boredpanda.com/", "https://www.cheezburger.com/", "https://www.failblog.org/",
+    
+    # Iteration 2: SPA / Engagement Edge Cases
+    "https://reactjs.org/", "https://vuejs.org/", "https://svelte.dev/", "https://angular.io/", "https://emberjs.com/",
+    "https://nextjs.org/", "https://nuxtjs.org/", "https://gatsbyjs.com/", "https://redwoodjs.com/", "https://blitzjs.com/",
+    "https://discord.com/app", "https://app.slack.com/", "https://web.whatsapp.com/", "https://messages.google.com/web", "https://web.telegram.org/",
+    "https://twitter.com/i/flow/login", "https://www.instagram.com/", "https://www.tiktok.com/", "https://www.twitch.tv/", "https://www.netflix.com/browse",
+    "https://soundcloud.com/", "https://open.spotify.com/", "https://music.apple.com/", "https://www.pandora.com/", "https://listen.tidal.com/"
 ]
 
 agent2_sites = [
@@ -58,7 +65,14 @@ agent2_sites = [
     
     # Community Centers / Religious (Often built by volunteers, poor code)
     "https://www.ymca.net/", "https://www.bgca.org/", "https://www.salvationarmyusa.org/", "https://www.habitat.org/", "https://www.goodwill.org/",
-    "https://www.unitedway.org/", "https://www.redcross.org/", "https://www.doctorswithoutborders.org/", "https://www.savethechildren.org/", "https://www.worldvision.org/"
+    "https://www.unitedway.org/", "https://www.redcross.org/", "https://www.doctorswithoutborders.org/", "https://www.savethechildren.org/", "https://www.worldvision.org/",
+    
+    # Iteration 2: Schema / Freshness Edge Cases
+    "https://www.harvard.edu/", "https://www.mit.edu/", "https://www.stanford.edu/", "https://www.yale.edu/", "https://www.princeton.edu/",
+    "https://www.cam.ac.uk/", "https://www.ox.ac.uk/", "https://www.berkeley.edu/", "https://www.ucla.edu/", "https://umich.edu/",
+    "https://www.nasa.gov/", "https://www.who.int/", "https://www.un.org/", "https://www.weforum.org/", "https://www.worldbank.org/",
+    "https://www.imf.org/", "https://www.amnesty.org/", "https://www.wwe.com/", "https://www.nfl.com/", "https://www.nba.com/",
+    "https://www.mlb.com/", "https://www.nhl.com/", "https://www.pgatour.com/", "https://www.nascar.com/", "https://www.ufc.com/"
 ]
 
 agent3_sites = [
@@ -88,7 +102,14 @@ agent3_sites = [
     
     # Aggressive Robots.txt (Strictly forbids AI bots, GPTBot, CCBot)
     "https://www.nytimes.com/", "https://www.reuters.com/", "https://www.washingtonpost.com/", "https://www.theatlantic.com/", "https://www.bloomberg.com/",
-    "https://www.wsj.com/", "https://www.cnbc.com/", "https://www.businessinsider.com/", "https://www.ft.com/", "https://www.theguardian.com/"
+    "https://www.wsj.com/", "https://www.cnbc.com/", "https://www.businessinsider.com/", "https://www.ft.com/", "https://www.theguardian.com/",
+    
+    # Iteration 2: Aggressive Paywalls, Popups, and Infinite Scroll
+    "https://www.wsj.com/", "https://www.bloomberg.com/", "https://www.ft.com/", "https://www.thetimes.co.uk/", "https://www.economist.com/",
+    "https://www.bostonglobe.com/", "https://www.latimes.com/", "https://www.chicagotribune.com/", "https://www.seattletimes.com/", "https://www.sfchronicle.com/",
+    "https://www.pinterest.com/", "https://www.tumblr.com/", "https://www.reddit.com/", "https://9gag.com/", "https://imgur.com/",
+    "https://www.quora.com/", "https://medium.com/", "https://substack.com/", "https://www.patreon.com/", "https://vimeo.com/",
+    "https://www.huffpost.com/", "https://www.theatlantic.com/", "https://www.newyorker.com/", "https://www.wired.com/", "https://www.vanityfair.com/"
 ]
 
 corpus = {
@@ -97,7 +118,7 @@ corpus = {
     "agent3": agent3_sites
 }
 
-with open("test_corpus.json", "w") as f:
+with open("data/test_corpus.json", "w") as f:
     json.dump(corpus, f, indent=2)
 
 print(f"Generated gritty test_corpus.json with {len(agent1_sites)} sites for agent1, {len(agent2_sites)} sites for agent2, and {len(agent3_sites)} sites for agent3.")
