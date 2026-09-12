@@ -46,15 +46,17 @@ git push
 
 ---
 
-# 🚀 Iteration 2: Heuristics & False Positives (Current Phase)
-*The crashes, UTF-8 errors, and bot-mitigation bugs from Iteration 1 have been solved and merged!*
+# 🚀 Iteration 2: Heuristics & False Positives
 
-**Your new objective for Iteration 2:**
-1. **Pull the latest `main`:** Your branch must have the latest robust parsing logic. 
+**Your specific assignment for Iteration 2 focuses exclusively on `schema_check.py` and `freshness_check.py`.**
+
+1. **Pull the latest `main`:** The `main` branch now contains the robust, crash-proof anti-bot/parsing logic you built! Ensure your branch has this code.
    ```bash
    git pull origin main
    ```
-2. **Re-run the Pipeline:** Execute `python scripts/run_pipeline.py <your_agent_name>` again.
-3. **Hunt False Positives / False Negatives:** Now that the script doesn't crash, look at the logical output. Is it flagging Apple.com as having "Thin Content"? Is it failing to realize a local business has no schema?
-4. **Tune the Heuristics:** Open `engagement_check.py` and `identity_check.py`. Adjust the word-count thresholds, add edge cases for SPAs, or refine the JSON-LD parsing logic to be smarter.
+2. **Re-run the Pipeline:** Execute `python scripts/run_pipeline.py agent2` to run against your gritty corpus.
+3. **Hunt False Positives / False Negatives:** Now that the script doesn't crash, look at the logical outputs in your logs. 
+   - Is `schema_check.py` failing to detect schema on sites that inject it dynamically via Tag Manager?
+   - Is `freshness_check.py` flagging ancient raw-HTML university pages just because they don't have an article `<time>` tag, even if a copyright date exists in the footer?
+4. **Tune the Heuristics:** Open `schema_check.py` and `freshness_check.py` and improve their logic. Adjust thresholds, add fallbacks to scan footers for dates, or refine the JSON-LD parsing to look for injected scripts.
 5. **Push:** Commit your tuning adjustments and push them back!
