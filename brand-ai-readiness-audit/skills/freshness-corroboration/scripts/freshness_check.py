@@ -5,19 +5,41 @@ import requests
 from bs4 import BeautifulSoup
 import extruct
 from w3lib.html import get_base_url
-from datetime import datetime
+from datetime import datetime, timezone
 from urllib.parse import urlparse
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+def is_blocked_response(resp):
+    if resp.status_code in (403, 429):
+        return True
+    html = resp.text or ""
+    html_lower = html.lower()
+    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
+        return True
+    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
+        return True
+    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
+        return True
+    return False
 
 def check_freshness(url, html):
     findings = []
     soup = BeautifulSoup(html, 'html.parser')
-    base_url = get_base_url(html, url)
+    try:
+        base_url = get_base_url(html, url)
+    except Exception:
+        base_url = url
     
     # 1. & 2. Date signals
     try:
         data = extruct.extract(html, base_url=base_url, syntaxes=['json-ld'])
-        json_ld = data.get('json-ld', [])
-    except:
+        json_ld = data.get('json-ld', []) if isinstance(data, dict) else []
+    except Exception:
         json_ld = []
 
     dates_found = []
@@ -25,13 +47,16 @@ def check_freshness(url, html):
     # Search JSON-LD
     for item in json_ld:
         if isinstance(item, dict):
-            if 'datePublished' in item: dates_found.append(item['datePublished'])
-            if 'dateModified' in item: dates_found.append(item['dateModified'])
+            if 'datePublished' in item and item['datePublished']:
+                dates_found.append(str(item['datePublished']))
+            if 'dateModified' in item and item['dateModified']:
+                dates_found.append(str(item['dateModified']))
 
     # Search HTML <time> tags
     for time_tag in soup.find_all('time'):
-        if time_tag.get('datetime'):
-            dates_found.append(time_tag.get('datetime'))
+        dt = time_tag.get('datetime')
+        if dt:
+            dates_found.append(str(dt))
             
     if not dates_found:
         findings.append({
@@ -52,16 +77,26 @@ def check_freshness(url, html):
         # Check staleness
         is_stale = False
         stale_date = ""
-        current_year = datetime.now().year
         for d in dates_found:
             try:
-                date_obj = datetime.fromisoformat(d.replace('Z', '+00:00'))
-                if (datetime.now().astimezone() - date_obj).days > 365:
+                clean_d = d.strip().replace('Z', '+00:00')
+                date_obj = datetime.fromisoformat(clean_d)
+                now = datetime.now(timezone.utc) if date_obj.tzinfo else datetime.now()
+                if (now - date_obj).days > 365:
                     is_stale = True
                     stale_date = d
                     break
-            except:
-                pass
+            except Exception:
+                m = re.search(r'(\d{4})-(\d{2})-(\d{2})', str(d))
+                if m:
+                    try:
+                        date_obj = datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)))
+                        if (datetime.now() - date_obj).days > 365:
+                            is_stale = True
+                            stale_date = d
+                            break
+                    except Exception:
+                        pass
                 
         if is_stale:
             findings.append({
@@ -80,44 +115,48 @@ def check_freshness(url, html):
             })
 
     # 3. Copyright year outdated
-    footer_text = ""
     footer = soup.find('footer')
     if footer:
         footer_text = footer.get_text()
     else:
-        # Fallback to body text
         footer_text = soup.body.get_text()[-1000:] if soup.body else ""
         
     copyright_match = re.search(r'(?:Copyright|©).*?([12][0-9]{3})', footer_text, re.IGNORECASE)
     if copyright_match:
-        year = int(copyright_match.group(1))
-        if year < datetime.now().year:
-            findings.append({
-                "id": "FRESH-003",
-                "skill_source": "freshness-corroboration",
-                "category": "discoverability",
-                "title": "Outdated copyright year",
-                "severity": "medium",
-                "evidence": f"Found copyright year {year}, but current year is {datetime.now().year}.",
-                "suggested_action": {
-                    "summary": "Update copyright year",
-                    "detail": "A stale copyright year is a strong negative freshness signal to automated systems.",
-                    "priority": "medium",
-                    "effort": "low"
-                }
-            })
+        try:
+            year = int(copyright_match.group(1))
+            current_year = datetime.now().year
+            if year < current_year:
+                findings.append({
+                    "id": "FRESH-003",
+                    "skill_source": "freshness-corroboration",
+                    "category": "discoverability",
+                    "title": "Outdated copyright year",
+                    "severity": "medium",
+                    "evidence": f"Found copyright year {year}, but current year is {current_year}.",
+                    "suggested_action": {
+                        "summary": "Update copyright year",
+                        "detail": "A stale copyright year is a strong negative freshness signal to automated systems.",
+                        "priority": "medium",
+                        "effort": "low"
+                    }
+                })
+        except Exception:
+            pass
 
     # 4. Inconsistent facts (Title vs H1)
-    title = soup.title.string.strip() if soup.title and soup.title.string else ""
+    title = soup.title.get_text(strip=True) if soup.title else ""
     h1 = soup.find('h1')
     h1_text = h1.get_text(strip=True) if h1 else ""
     
     if title and h1_text:
-        # Just a very basic heuristic: if they share no words
-        title_words = set(title.lower().split())
-        h1_words = set(h1_text.lower().split())
-        if len(title_words.intersection(h1_words)) == 0:
-             findings.append({
+        title_words = set(re.findall(r'\w+', title.lower()))
+        h1_words = set(re.findall(r'\w+', h1_text.lower()))
+        stop_words = {'the', 'a', 'an', 'and', 'or', 'of', 'in', 'on', 'at', 'to', 'for', 'with', 'by', 'is', 'home', 'page', 'official', 'site', 'welcome'}
+        title_meaningful = title_words - stop_words
+        h1_meaningful = h1_words - stop_words
+        if title_meaningful and h1_meaningful and len(title_meaningful.intersection(h1_meaningful)) == 0:
+            findings.append({
                 "id": "FRESH-004",
                 "skill_source": "freshness-corroboration",
                 "category": "discoverability",
@@ -134,23 +173,33 @@ def check_freshness(url, html):
             
     # 5. Corroboration (Outbound links)
     links = soup.find_all('a', href=True)
-    external_links = [l['href'] for l in links if l['href'].startswith('http') and urlparse(l['href']).netloc != urlparse(url).netloc]
+    current_netloc = urlparse(url).netloc.lower()
+    external_links = []
+    for l in links:
+        href = l.get('href', '')
+        if href.startswith('http'):
+            try:
+                target_netloc = urlparse(href).netloc.lower()
+                if target_netloc and target_netloc != current_netloc:
+                    external_links.append(href)
+            except Exception:
+                pass
     
     if len(external_links) == 0:
         findings.append({
-                "id": "FRESH-005",
-                "skill_source": "freshness-corroboration",
-                "category": "discoverability",
-                "title": "No external corroborating links",
-                "severity": "medium",
-                "evidence": "Found 0 external outbound links.",
-                "suggested_action": {
-                    "summary": "Add citations or links to trusted sources",
-                    "detail": "Linking to authoritative external sources (like partners, media coverage, Wikipedia) helps ground the entity in the wider knowledge graph.",
-                    "priority": "medium",
-                    "effort": "medium"
-                }
-            })
+            "id": "FRESH-005",
+            "skill_source": "freshness-corroboration",
+            "category": "discoverability",
+            "title": "No external corroborating links",
+            "severity": "medium",
+            "evidence": "Found 0 external outbound links.",
+            "suggested_action": {
+                "summary": "Add citations or links to trusted sources",
+                "detail": "Linking to authoritative external sources (like partners, media coverage, Wikipedia) helps ground the entity in the wider knowledge graph.",
+                "priority": "medium",
+                "effort": "medium"
+            }
+        })
             
     return findings
 
@@ -166,11 +215,10 @@ def main():
     all_findings = []
     
     try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
-        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
-            findings.append({
+        if is_blocked_response(resp):
+            all_findings.append({
                 "id": "SKILLS-BLOCKED",
                 "skill_source": "skills",
                 "category": "discoverability",
@@ -184,7 +232,8 @@ def main():
                     "effort": "low"
                 }
             })
-            return findings
+            print(json.dumps({"findings": all_findings}, indent=2))
+            return
         
         all_findings.extend(check_freshness(url, html))
         
@@ -208,3 +257,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

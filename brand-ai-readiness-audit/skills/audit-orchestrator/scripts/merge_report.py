@@ -16,7 +16,12 @@ def run_skill_script(script_path, url):
             timeout=180
         )
         if result.returncode == 0:
-            return json.loads(result.stdout).get("findings", [])
+            try:
+                data = json.loads(result.stdout)
+                return data.get("findings", [])
+            except Exception as jde:
+                print(f"JSON decode error running {script_path}: {jde}. Stdout: {result.stdout[:200]}", file=sys.stderr)
+                return []
         else:
             print(f"Error running {script_path}: {result.stderr}", file=sys.stderr)
             return []
@@ -46,21 +51,31 @@ def main():
     ]
     
     all_findings = []
+    valid_scripts = [s for s in scripts if os.path.exists(s)]
     
-    for script in scripts:
-        if os.path.exists(script):
-            findings = run_skill_script(script, url)
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=len(valid_scripts)) as executor:
+        results = executor.map(lambda s: run_skill_script(s, url), valid_scripts)
+        for findings in results:
             all_findings.extend(findings)
             
-    # Deduplicate findings based on ID (though they should be unique) and Title
+    # Deduplicate findings based on ID and Title
     unique_findings = []
+    seen_ids = set()
     seen_titles = set()
     
     for f in all_findings:
+        fid = f.get('id')
         title = f.get('title')
-        if title not in seen_titles:
+        if fid and fid in seen_ids:
+            continue
+        if title and title in seen_titles:
+            continue
+        if fid:
+            seen_ids.add(fid)
+        if title:
             seen_titles.add(title)
-            unique_findings.append(f)
+        unique_findings.append(f)
             
     # Sort by severity
     unique_findings.sort(key=lambda x: SEVERITY_ORDER.get(x.get('severity', 'low'), 99))
@@ -114,3 +129,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

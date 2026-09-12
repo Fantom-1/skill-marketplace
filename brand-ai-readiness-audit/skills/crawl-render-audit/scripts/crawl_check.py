@@ -1,12 +1,31 @@
 import sys
 import json
+import re
 import requests
 import urllib.robotparser
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
-import time
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+def is_blocked_response(resp):
+    if resp.status_code in (403, 429):
+        return True
+    html = resp.text or ""
+    html_lower = html.lower()
+    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
+        return True
+    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
+        return True
+    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
+        return True
+    return False
 
 def check_robots_txt(url):
     parsed = urlparse(url)
@@ -14,21 +33,42 @@ def check_robots_txt(url):
     robots_url = f"{base_url}/robots.txt"
     
     findings = []
-    
     rp = urllib.robotparser.RobotFileParser()
-    rp.set_url(robots_url)
     
     try:
-        rp.read()
-    except Exception as e:
+        resp = requests.get(robots_url, headers=HEADERS, timeout=10, verify=False)
+        if resp.status_code == 200:
+            rp.parse(resp.text.splitlines())
+        elif resp.status_code in (401, 403):
+            findings.append({
+                "id": "CRAWL-001",
+                "skill_source": "crawl-render-audit",
+                "category": "discoverability",
+                "title": "robots.txt blocks AI crawlers",
+                "severity": "critical",
+                "evidence": f"robots.txt is protected or inaccessible (status {resp.status_code}).",
+                "suggested_action": {
+                    "summary": "Remove AI crawler blocks from robots.txt",
+                    "detail": "Allow AI bots to crawl the site to ensure inclusion in AI overviews and answers.",
+                    "priority": "critical",
+                    "effort": "low"
+                }
+            })
+            return findings
+        else:
+            return findings
+    except Exception:
         return findings
 
     bots_to_check = ['GPTBot', 'Google-Extended', 'CCBot', 'anthropic-ai', 'ChatGPT-User']
     blocked_bots = []
     
     for bot in bots_to_check:
-        if not rp.can_fetch(bot, url):
-            blocked_bots.append(bot)
+        try:
+            if not rp.can_fetch(bot, url):
+                blocked_bots.append(bot)
+        except Exception:
+            pass
             
     if blocked_bots:
         findings.append({
@@ -53,8 +93,8 @@ def check_html_signals(url, html, response_size):
     soup = BeautifulSoup(html, 'html.parser')
     
     # 2. noindex
-    robots_meta = soup.find('meta', attrs={'name': 'robots'})
-    if robots_meta and 'noindex' in robots_meta.get('content', '').lower():
+    robots_meta = soup.find('meta', attrs={'name': re.compile(r'^robots$', re.I)})
+    if robots_meta and 'noindex' in (robots_meta.get('content') or '').lower():
         findings.append({
             "id": "CRAWL-002",
             "skill_source": "crawl-render-audit",
@@ -71,7 +111,7 @@ def check_html_signals(url, html, response_size):
         })
         
     # 5. Canonical URL issues
-    canonical = soup.find('link', rel='canonical')
+    canonical = soup.find('link', rel=lambda val: val and 'canonical' in val)
     if not canonical or not canonical.get('href'):
         findings.append({
             "id": "CRAWL-005",
@@ -90,37 +130,48 @@ def check_html_signals(url, html, response_size):
         
     # 6. JS-rendering dependency
     js_markers = [
-        soup.find(id='root'), soup.find(id='app'), 
+        soup.find(id='root'), soup.find(id='app'), soup.find(id='__next'),
         soup.find('script', id='__NEXT_DATA__'), soup.find('noscript')
     ]
-    # Check if body is mostly empty (indicative of SPA)
     body = soup.body
-    if body and len(body.get_text(strip=True)) < 100 and any(js_markers):
-        findings.append({
-            "id": "CRAWL-006",
-            "skill_source": "crawl-render-audit",
-            "category": "discoverability",
-            "title": "Heavy JS-rendering dependency detected",
-            "severity": "high",
-            "evidence": "Raw HTML contains very little text (< 100 words) and contains SPA markers (e.g. empty #root or #app divs, __NEXT_DATA__).",
-            "suggested_action": {
-                "summary": "Implement server-side rendering (SSR) or pre-rendering",
-                "detail": "Ensure that the core content is present in the raw HTML payload sent to crawlers. Use SSR, SSG, or dynamic rendering.",
-                "priority": "high",
-                "effort": "high"
-            }
-        })
+    if body:
+        body_words = len(body.get_text(strip=True).split())
+        if body_words < 100 and any(js_markers):
+            findings.append({
+                "id": "CRAWL-006",
+                "skill_source": "crawl-render-audit",
+                "category": "discoverability",
+                "title": "Heavy JS-rendering dependency detected",
+                "severity": "high",
+                "evidence": f"Raw HTML contains very little text ({body_words} words) and contains SPA markers (e.g. empty #root or #app divs, __NEXT_DATA__).",
+                "suggested_action": {
+                    "summary": "Implement server-side rendering (SSR) or pre-rendering",
+                    "detail": "Ensure that the core content is present in the raw HTML payload sent to crawlers. Use SSR, SSG, or dynamic rendering.",
+                    "priority": "high",
+                    "effort": "high"
+                }
+            })
         
     # 7. Iframes
     iframes = soup.find_all('iframe')
-    if len(iframes) > 2:
+    content_iframes = []
+    for iframe in iframes:
+        src = (iframe.get('src') or '').lower()
+        width = iframe.get('width', '')
+        height = iframe.get('height', '')
+        style = (iframe.get('style') or '').lower()
+        if 'googletagmanager' in src or width in ('0', '1') or height in ('0', '1') or 'display:none' in style or 'visibility:hidden' in style:
+            continue
+        content_iframes.append(iframe)
+
+    if len(content_iframes) > 2:
         findings.append({
             "id": "CRAWL-007",
             "skill_source": "crawl-render-audit",
             "category": "engagement",
             "title": "Content potentially locked in iframes",
             "severity": "medium",
-            "evidence": f"Found {len(iframes)} <iframe> tags. Search engines and AI often do not index iframe content well.",
+            "evidence": f"Found {len(content_iframes)} <iframe> tags. Search engines and AI often do not index iframe content well.",
             "suggested_action": {
                 "summary": "Avoid using iframes for core content",
                 "detail": "Embed core content directly into the DOM instead of relying on iframes.",
@@ -154,7 +205,7 @@ def check_sitemap(url):
     sitemap_url = f"{parsed.scheme}://{parsed.netloc}/sitemap.xml"
     
     try:
-        resp = requests.get(sitemap_url, timeout=10)
+        resp = requests.get(sitemap_url, headers=HEADERS, timeout=10, verify=False)
         if resp.status_code != 200:
             findings.append({
                 "id": "CRAWL-003",
@@ -174,20 +225,17 @@ def check_sitemap(url):
             
         try:
             root = ET.fromstring(resp.content)
-            # Check lastmod
             stale = False
-            namespaces = {'sm': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
-            for url_elem in root.findall('sm:url', namespaces):
-                lastmod = url_elem.find('sm:lastmod', namespaces)
-                if lastmod is not None:
+            for elem in root.iter():
+                if elem.tag.endswith('lastmod') and elem.text:
                     try:
-                        date_str = lastmod.text[:10]
+                        date_str = elem.text.strip()[:10]
                         mod_date = datetime.strptime(date_str, "%Y-%m-%d")
                         delta = datetime.now() - mod_date
                         if delta.days > 180:
                             stale = True
                             break
-                    except:
+                    except Exception:
                         pass
             
             if stale:
@@ -205,8 +253,8 @@ def check_sitemap(url):
                         "effort": "low"
                     }
                 })
-        except ET.ParseError:
-             findings.append({
+        except Exception:
+            findings.append({
                 "id": "CRAWL-003",
                 "skill_source": "crawl-render-audit",
                 "category": "discoverability",
@@ -221,7 +269,7 @@ def check_sitemap(url):
                 }
             })
             
-    except Exception as e:
+    except Exception:
         pass
         
     return findings
@@ -241,11 +289,10 @@ def main():
     all_findings.extend(check_robots_txt(url))
     
     # Fetch page
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
     try:
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
-        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
+        if is_blocked_response(resp):
             all_findings.append({
                 "id": "SKILLS-BLOCKED",
                 "skill_source": "skills",
@@ -260,10 +307,10 @@ def main():
                     "effort": "low"
                 }
             })
-            return all_findings
+            print(json.dumps({"findings": all_findings}, indent=2))
+            return
+            
         size = len(resp.content)
-        
-        # HTML Signals
         all_findings.extend(check_html_signals(url, html, size))
         
     except Exception as e:
@@ -290,3 +337,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

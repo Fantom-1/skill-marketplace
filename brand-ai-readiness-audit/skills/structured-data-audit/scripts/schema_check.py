@@ -1,19 +1,42 @@
 import sys
 import json
+import re
 import requests
 from bs4 import BeautifulSoup
 import extruct
 from w3lib.html import get_base_url
 
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+def is_blocked_response(resp):
+    if resp.status_code in (403, 429):
+        return True
+    html = resp.text or ""
+    html_lower = html.lower()
+    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
+        return True
+    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
+        return True
+    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
+        return True
+    return False
+
 def check_structured_data(url, html):
     findings = []
-    base_url = get_base_url(html, url)
+    try:
+        base_url = get_base_url(html, url)
+    except Exception:
+        base_url = url
     
     # Extract metadata
     try:
         data = extruct.extract(html, base_url=base_url, syntaxes=['json-ld'])
-        json_ld = data.get('json-ld', [])
-    except Exception as e:
+        json_ld = data.get('json-ld', []) if isinstance(data, dict) else []
+    except Exception:
         json_ld = []
         
     if not json_ld:
@@ -32,12 +55,11 @@ def check_structured_data(url, html):
             }
         })
     else:
-        # Check if there are some basic issues with the schema
         missing_names = []
         for item in json_ld:
             if isinstance(item, dict) and '@type' in item:
                 if 'name' not in item and 'headline' not in item:
-                    missing_names.append(item['@type'])
+                    missing_names.append(str(item.get('@type', 'Unknown')))
         if missing_names:
             findings.append({
                 "id": "SCHEMA-002",
@@ -61,17 +83,18 @@ def check_meta_tags(url, html):
     soup = BeautifulSoup(html, 'html.parser')
     
     # Title & Meta Description
-    title = soup.title
-    desc = soup.find('meta', attrs={'name': 'description'})
+    title_text = soup.title.get_text(strip=True) if soup.title else ""
+    desc = soup.find('meta', attrs={'name': re.compile(r'^description$', re.I)})
+    desc_content = (desc.get('content') or '').strip() if desc else ""
     
-    if not title or not title.string or len(title.string.strip()) < 5:
+    if not title_text or len(title_text) < 5:
         findings.append({
             "id": "SCHEMA-003",
             "skill_source": "structured-data-audit",
             "category": "discoverability",
             "title": "Missing or very short <title>",
             "severity": "high",
-            "evidence": f"Title tag found: {title.string if title else 'None'}",
+            "evidence": f"Title tag found: {title_text if title_text else 'None'}",
             "suggested_action": {
                 "summary": "Add a descriptive <title> tag",
                 "detail": "Include a meaningful, brand-inclusive title.",
@@ -80,7 +103,7 @@ def check_meta_tags(url, html):
             }
         })
         
-    if not desc or not desc.get('content') or len(desc.get('content').strip()) < 10:
+    if not desc_content or len(desc_content) < 10:
         findings.append({
             "id": "SCHEMA-004",
             "skill_source": "structured-data-audit",
@@ -97,8 +120,8 @@ def check_meta_tags(url, html):
         })
         
     # OpenGraph
-    og_title = soup.find('meta', property='og:title')
-    og_desc = soup.find('meta', property='og:description')
+    og_title = soup.find('meta', property=re.compile(r'^og:title$', re.I))
+    og_desc = soup.find('meta', property=re.compile(r'^og:description$', re.I))
     
     if not og_title or not og_desc:
         findings.append({
@@ -149,11 +172,10 @@ def main():
     all_findings = []
     
     try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
-        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
-            findings.append({
+        if is_blocked_response(resp):
+            all_findings.append({
                 "id": "SKILLS-BLOCKED",
                 "skill_source": "skills",
                 "category": "discoverability",
@@ -167,7 +189,8 @@ def main():
                     "effort": "low"
                 }
             })
-            return findings
+            print(json.dumps({"findings": all_findings}, indent=2))
+            return
         
         all_findings.extend(check_structured_data(url, html))
         all_findings.extend(check_meta_tags(url, html))
@@ -192,3 +215,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -1,8 +1,27 @@
 import sys
 import json
-import requests
 import re
+import requests
 from bs4 import BeautifulSoup
+
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+def is_blocked_response(resp):
+    if resp.status_code in (403, 429):
+        return True
+    html = resp.text or ""
+    html_lower = html.lower()
+    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
+        return True
+    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
+        return True
+    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
+        return True
+    return False
 
 def check_engagement(url, html):
     findings = []
@@ -27,7 +46,7 @@ def check_engagement(url, html):
         })
         
     # 2. Viewport (Mobile)
-    viewport = soup.find('meta', attrs={'name': 'viewport'})
+    viewport = soup.find('meta', attrs={'name': re.compile(r'^viewport$', re.I)})
     if not viewport:
         findings.append({
             "id": "ENGAGE-002",
@@ -78,13 +97,13 @@ def check_engagement(url, html):
         })
         
     # 4. Thin content
-    # Remove script and style tags to count visible words
-    for script in soup(["script", "style", "noscript"]):
+    soup_copy = BeautifulSoup(html, 'html.parser')
+    for script in soup_copy(["script", "style", "noscript", "svg"]):
         script.extract()
-    text = soup.get_text(separator=' ')
+    text = soup_copy.get_text(separator=' ')
     words = text.split()
     if len(words) < 100:
-         findings.append({
+        findings.append({
             "id": "ENGAGE-005",
             "skill_source": "engagement-audit",
             "category": "engagement",
@@ -101,7 +120,7 @@ def check_engagement(url, html):
         
     # 5. Clear CTAs
     links_and_buttons = soup.find_all(['a', 'button'])
-    cta_words = ['buy', 'purchase', 'subscribe', 'contact', 'sign up', 'register', 'get started', 'book', 'shop', 'learn more']
+    cta_words = ['buy', 'purchase', 'subscribe', 'contact', 'sign up', 'register', 'get started', 'book', 'shop', 'learn more', 'apply', 'donate', 'join', 'explore']
     has_cta = False
     
     for el in links_and_buttons:
@@ -140,11 +159,10 @@ def main():
     all_findings = []
     
     try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
-        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
-            findings.append({
+        if is_blocked_response(resp):
+            all_findings.append({
                 "id": "SKILLS-BLOCKED",
                 "skill_source": "skills",
                 "category": "discoverability",
@@ -158,7 +176,8 @@ def main():
                     "effort": "low"
                 }
             })
-            return findings
+            print(json.dumps({"findings": all_findings}, indent=2))
+            return
         all_findings.extend(check_engagement(url, html))
     except Exception as e:
         all_findings.append({
@@ -180,3 +199,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

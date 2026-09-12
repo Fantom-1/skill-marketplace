@@ -10,7 +10,7 @@ def slugify(url):
 
 def run_pipeline(agent_name):
     # Load corpus
-    with open("test_corpus.json", "r") as f:
+    with open("test_corpus.json", "r", encoding="utf-8") as f:
         corpus = json.load(f)
         
     if agent_name not in corpus:
@@ -60,7 +60,7 @@ def run_pipeline(agent_name):
                 report = json.loads(result.stdout)
                 
                 # Save JSON
-                with open(output_file, "w") as f:
+                with open(output_file, "w", encoding="utf-8") as f:
                     json.dump(report, f, indent=2)
                     
                 finding_summary = report.get("summary", {})
@@ -96,7 +96,7 @@ def run_pipeline(agent_name):
             
     # Write Analysis Report
     report_path = os.path.join(log_dir, "analysis_report.md")
-    with open(report_path, "w") as f:
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(f"# Pipeline Run Analysis: {agent_name}\n\n")
         f.write(f"**Total Run Time:** {summary['total_time']:.2f}s\n")
         f.write(f"**Crashes / Timeouts:** {summary['crashes']}\n\n")

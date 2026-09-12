@@ -1,19 +1,42 @@
 import sys
 import json
+import re
 import requests
 from bs4 import BeautifulSoup
 import extruct
 from w3lib.html import get_base_url
 
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+def is_blocked_response(resp):
+    if resp.status_code in (403, 429):
+        return True
+    html = resp.text or ""
+    html_lower = html.lower()
+    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
+        return True
+    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
+        return True
+    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
+        return True
+    return False
+
 def check_identity(url, html):
     findings = []
     soup = BeautifulSoup(html, 'html.parser')
-    base_url = get_base_url(html, url)
+    try:
+        base_url = get_base_url(html, url)
+    except Exception:
+        base_url = url
     
     try:
         data = extruct.extract(html, base_url=base_url, syntaxes=['json-ld'])
-        json_ld = data.get('json-ld', [])
-    except:
+        json_ld = data.get('json-ld', []) if isinstance(data, dict) else []
+    except Exception:
         json_ld = []
 
     has_org_schema = False
@@ -23,16 +46,16 @@ def check_identity(url, html):
     for item in json_ld:
         if isinstance(item, dict):
             type_val = item.get('@type', '')
-            if type_val == 'Organization' or type_val == 'LocalBusiness':
+            if type_val in ('Organization', 'LocalBusiness', 'Corporation', 'EducationalOrganization', 'NGO', 'GovernmentOrganization'):
                 has_org_schema = True
                 if 'sameAs' in item:
                     val = item['sameAs']
                     if isinstance(val, list):
-                        same_as_links.extend(val)
-                    else:
-                        same_as_links.append(val)
-                if 'description' in item:
-                    schema_desc = item['description']
+                        same_as_links.extend([str(v) for v in val if v])
+                    elif val:
+                        same_as_links.append(str(val))
+                if 'description' in item and item['description']:
+                    schema_desc = str(item['description']).strip()
                     
     if not has_org_schema:
         findings.append({
@@ -67,15 +90,15 @@ def check_identity(url, html):
         })
         
     # Consistency check
-    meta_desc = soup.find('meta', attrs={'name': 'description'})
-    meta_desc_val = meta_desc.get('content', '') if meta_desc else ""
+    meta_desc = soup.find('meta', attrs={'name': re.compile(r'^description$', re.I)})
+    meta_desc_val = (meta_desc.get('content') or '').strip() if meta_desc else ""
     
-    og_desc = soup.find('meta', property='og:description')
-    og_desc_val = og_desc.get('content', '') if og_desc else ""
+    og_desc = soup.find('meta', property=re.compile(r'^og:description$', re.I))
+    og_desc_val = (og_desc.get('content') or '').strip() if og_desc else ""
     
     descriptions = [d for d in [schema_desc, meta_desc_val, og_desc_val] if d]
     if len(set(descriptions)) > 1:
-         findings.append({
+        findings.append({
             "id": "IDENT-003",
             "skill_source": "entity-identity-audit",
             "category": "discoverability",
@@ -94,8 +117,9 @@ def check_identity(url, html):
     links = soup.find_all('a', href=True)
     has_about = False
     for link in links:
-        href = link['href'].lower()
-        if 'about' in href or 'who-we-are' in href:
+        href = (link.get('href') or '').lower()
+        text = link.get_text(strip=True).lower()
+        if 'about' in href or 'who-we-are' in href or 'our-story' in href or 'about' in text or 'who we are' in text:
             has_about = True
             break
             
@@ -129,11 +153,10 @@ def main():
     all_findings = []
     
     try:
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        resp = requests.get(url, headers=headers, timeout=15)
+        resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
-        if resp.status_code != 200 or "<title>Just a moment...</title>" in html or "cloudflare" in html.lower() or "captcha" in html.lower():
-            findings.append({
+        if is_blocked_response(resp):
+            all_findings.append({
                 "id": "SKILLS-BLOCKED",
                 "skill_source": "skills",
                 "category": "discoverability",
@@ -147,7 +170,8 @@ def main():
                     "effort": "low"
                 }
             })
-            return findings
+            print(json.dumps({"findings": all_findings}, indent=2))
+            return
         all_findings.extend(check_identity(url, html))
     except Exception as e:
         all_findings.append({
@@ -169,3 +193,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
