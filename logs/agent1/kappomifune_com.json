@@ -1,0 +1,97 @@
+{
+  "site": "www.kappomifune.com",
+  "audited_at": "2026-09-12T14:39:24Z",
+  "summary": {
+    "total_findings": 5,
+    "critical": 5,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-ERR",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch homepage",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.kappomifune.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.kappomifune.com', port=443): Failed to resolve 'www.kappomifune.com' ([Errno 11001] getaddrinfo failed)\"))",
+      "suggested_action": {
+        "summary": "Ensure server is reachable",
+        "detail": "The audit could not reach the server. Check DNS and server status.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-ERR",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch page for schema audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.kappomifune.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.kappomifune.com', port=443): Failed to resolve 'www.kappomifune.com' ([Errno 11001] getaddrinfo failed)\"))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "FRESH-ERR",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Failed to fetch page for freshness audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.kappomifune.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.kappomifune.com', port=443): Failed to resolve 'www.kappomifune.com' ([Errno 11001] getaddrinfo failed)\"))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "IDENT-ERR",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch page for identity audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.kappomifune.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.kappomifune.com', port=443): Failed to resolve 'www.kappomifune.com' ([Errno 11001] getaddrinfo failed)\"))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "ENGAGE-ERR",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Failed to fetch page for engagement audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.kappomifune.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.kappomifune.com', port=443): Failed to resolve 'www.kappomifune.com' ([Errno 11001] getaddrinfo failed)\"))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

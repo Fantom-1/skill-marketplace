@@ -1,0 +1,139 @@
+{
+  "site": "soundcloud.com",
+  "audited_at": "2026-09-12T14:49:00Z",
+  "summary": {
+    "total_findings": 8,
+    "critical": 0,
+    "high": 4,
+    "medium": 4,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-006",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Heavy JS-rendering dependency detected",
+      "severity": "high",
+      "evidence": "Raw HTML contains very little text (41 words) and contains SPA markers (e.g. empty #root or #app divs, __NEXT_DATA__).",
+      "suggested_action": {
+        "summary": "Implement server-side rendering (SSR) or pre-rendering",
+        "detail": "Ensure that the core content is present in the raw HTML payload sent to crawlers. Use SSR, SSG, or dynamic rendering.",
+        "priority": "high",
+        "effort": "high"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-005",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Client-Side Rendered (CSR) SPA content hidden from basic AI crawlers",
+      "severity": "high",
+      "evidence": "Raw HTML contains only ~51 visible words because content relies on client-side JavaScript rendering.",
+      "suggested_action": {
+        "summary": "Implement Server-Side Rendering (SSR) or Prerendering",
+        "detail": "Use SSR (e.g. Next.js, Nuxt) or prerendering services so non-JS AI crawlers can read full page content.",
+        "priority": "high",
+        "effort": "high"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-004",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing explicit 'About' or 'Company' page link",
+      "severity": "medium",
+      "evidence": "Scanned all on-page navigation links; no link pointing to 'About', 'Company', 'Team', or 'Docs' was found.",
+      "suggested_action": {
+        "summary": "Add a clear About/Company link to navigation",
+        "detail": "A dedicated About or Company page helps establish brand identity and authority for AI models.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-001",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing semantic navigation structure",
+      "severity": "medium",
+      "evidence": "Did not find <nav> elements, role='navigation', or header menu containers with links.",
+      "suggested_action": {
+        "summary": "Use semantic HTML5 <nav> or ARIA navigation roles",
+        "detail": "Wrap main navigation menus in <nav> tags or role='navigation' to provide clear structure for AI crawlers.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-003",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing H1 heading",
+      "severity": "medium",
+      "evidence": "No <h1> tag or role='heading' (aria-level=1) was found on the page.",
+      "suggested_action": {
+        "summary": "Add a single, clear H1 heading",
+        "detail": "Ensure the page has one main H1 heading that describes the primary content for AI summarization.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

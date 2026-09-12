@@ -1,0 +1,181 @@
+{
+  "site": "www.instagram.com",
+  "audited_at": "2026-09-12T14:48:38Z",
+  "summary": {
+    "total_findings": 11,
+    "critical": 1,
+    "high": 4,
+    "medium": 6,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "SCHEMA-ERR",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch page for schema audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.instagram.com', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "CRAWL-005",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing canonical URL",
+      "severity": "high",
+      "evidence": "No <link rel=\"canonical\"> tag found in the HTML <head>.",
+      "suggested_action": {
+        "summary": "Add a canonical URL tag",
+        "detail": "Add a <link rel=\"canonical\" href=\"...\"> tag to prevent duplicate content issues.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Invalid XML sitemap",
+      "severity": "high",
+      "evidence": "Sitemap at https://www.instagram.com/sitemap.xml could not be parsed as valid XML.",
+      "suggested_action": {
+        "summary": "Fix sitemap XML syntax",
+        "detail": "Validate your sitemap against the standard XML schema.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-005",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Client-Side Rendered (CSR) SPA content hidden from basic AI crawlers",
+      "severity": "high",
+      "evidence": "Raw HTML contains only ~1 visible words because content relies on client-side JavaScript rendering.",
+      "suggested_action": {
+        "summary": "Implement Server-Side Rendering (SSR) or Prerendering",
+        "detail": "Use SSR (e.g. Next.js, Nuxt) or prerendering services so non-JS AI crawlers can read full page content.",
+        "priority": "high",
+        "effort": "high"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-005",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No external corroborating links",
+      "severity": "medium",
+      "evidence": "Found 0 external outbound links.",
+      "suggested_action": {
+        "summary": "Add citations or links to trusted sources",
+        "detail": "Linking to authoritative external sources (like partners, media coverage, Wikipedia) helps ground the entity in the wider knowledge graph.",
+        "priority": "medium",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "IDENT-004",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing explicit 'About' or 'Company' page link",
+      "severity": "medium",
+      "evidence": "Scanned all on-page navigation links; no link pointing to 'About', 'Company', 'Team', or 'Docs' was found.",
+      "suggested_action": {
+        "summary": "Add a clear About/Company link to navigation",
+        "detail": "A dedicated About or Company page helps establish brand identity and authority for AI models.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-001",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing semantic navigation structure",
+      "severity": "medium",
+      "evidence": "Did not find <nav> elements, role='navigation', or header menu containers with links.",
+      "suggested_action": {
+        "summary": "Use semantic HTML5 <nav> or ARIA navigation roles",
+        "detail": "Wrap main navigation menus in <nav> tags or role='navigation' to provide clear structure for AI crawlers.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-003",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing H1 heading",
+      "severity": "medium",
+      "evidence": "No <h1> tag or role='heading' (aria-level=1) was found on the page.",
+      "suggested_action": {
+        "summary": "Add a single, clear H1 heading",
+        "detail": "Ensure the page has one main H1 heading that describes the primary content for AI summarization.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-006",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "No obvious Call to Action (CTA)",
+      "severity": "medium",
+      "evidence": "Did not detect standard CTA actions (buy, sign up, contact, learn, try, search, connect) in interactive elements.",
+      "suggested_action": {
+        "summary": "Add clear CTAs",
+        "detail": "Guide visitors and AI agents to primary conversion or engagement actions.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

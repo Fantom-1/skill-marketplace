@@ -1,0 +1,63 @@
+{
+  "site": "www.boredpanda.com",
+  "audited_at": "2026-09-12T14:46:46Z",
+  "summary": {
+    "total_findings": 3,
+    "critical": 0,
+    "high": 0,
+    "medium": 3,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "SCHEMA-002",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing required properties in JSON-LD",
+      "severity": "medium",
+      "evidence": "Found these types missing a 'name' or 'headline' property: WebSite",
+      "suggested_action": {
+        "summary": "Ensure all schema blocks have a name",
+        "detail": "Provide a descriptive name property for all schema.org entities.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-003",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing H1 heading",
+      "severity": "medium",
+      "evidence": "No <h1> tag or role='heading' (aria-level=1) was found on the page.",
+      "suggested_action": {
+        "summary": "Add a single, clear H1 heading",
+        "detail": "Ensure the page has one main H1 heading that describes the primary content for AI summarization.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    }
+  ]
+}

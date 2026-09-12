@@ -1,0 +1,167 @@
+{
+  "site": "www.yandex.ru",
+  "audited_at": "2026-09-12T14:45:59Z",
+  "summary": {
+    "total_findings": 10,
+    "critical": 4,
+    "high": 4,
+    "medium": 2,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-001",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "robots.txt blocks AI crawlers",
+      "severity": "critical",
+      "evidence": "The following AI bots are disallowed in robots.txt: GPTBot, Google-Extended, CCBot, anthropic-ai, ChatGPT-User",
+      "suggested_action": {
+        "summary": "Remove AI crawler blocks from robots.txt",
+        "detail": "Allow AI bots to crawl the site to ensure inclusion in AI overviews and answers. Remove 'Disallow: /' for these User-agents.",
+        "priority": "critical",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-ERR",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch homepage",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.yandex.ru', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))",
+      "suggested_action": {
+        "summary": "Ensure server is reachable",
+        "detail": "The audit could not reach the server. Check DNS and server status.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "FRESH-ERR",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Failed to fetch page for freshness audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='sso.passport.yandex.ru', port=443): Max retries exceeded with url: /push?uuid=e90a6612-0baa-409d-bd67-910ce2e27fe1&retpath=https%3A%2F%2Fdzen.ru%2F%3Fyredirect%3Dtrue%26is_autologin_ya%3Dtrue (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "ENGAGE-ERR",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Failed to fetch page for engagement audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='sso.passport.yandex.ru', port=443): Max retries exceeded with url: /push?uuid=bf9f6e09-8d26-49d8-b01f-05751623d1bd&retpath=https%3A%2F%2Fdzen.ru%2F%3Fyredirect%3Dtrue%26is_autologin_ya%3Dtrue (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)')))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-003",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing or very short <title>",
+      "severity": "high",
+      "evidence": "Title tag found: None",
+      "suggested_action": {
+        "summary": "Add a descriptive <title> tag",
+        "detail": "Include a meaningful, brand-inclusive title.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-004",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing <meta description>",
+      "severity": "high",
+      "evidence": "No meta description found, or it's too short.",
+      "suggested_action": {
+        "summary": "Add a descriptive meta description",
+        "detail": "Provide a 150-160 character summary of the page.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-005",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing OpenGraph tags",
+      "severity": "medium",
+      "evidence": "og:title present: False, og:description present: False",
+      "suggested_action": {
+        "summary": "Implement OpenGraph tags",
+        "detail": "Add standard OpenGraph tags (og:title, og:description, og:image) for better snippet rendering across platforms and assistants.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-004",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing explicit 'About' or 'Company' page link",
+      "severity": "medium",
+      "evidence": "Scanned all on-page navigation links; no link pointing to 'About', 'Company', 'Team', or 'Docs' was found.",
+      "suggested_action": {
+        "summary": "Add a clear About/Company link to navigation",
+        "detail": "A dedicated About or Company page helps establish brand identity and authority for AI models.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

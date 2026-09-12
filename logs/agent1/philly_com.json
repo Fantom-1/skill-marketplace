@@ -1,0 +1,97 @@
+{
+  "site": "www.philly.com",
+  "audited_at": "2026-09-12T14:42:47Z",
+  "summary": {
+    "total_findings": 5,
+    "critical": 0,
+    "high": 2,
+    "medium": 3,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing or broken XML sitemap",
+      "severity": "high",
+      "evidence": "Attempted to fetch https://www.philly.com/sitemap.xml but got status 404.",
+      "suggested_action": {
+        "summary": "Publish a valid XML sitemap",
+        "detail": "Create a sitemap.xml at the domain root and list it in robots.txt.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-004",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing <meta description>",
+      "severity": "high",
+      "evidence": "No meta description found, or it's too short.",
+      "suggested_action": {
+        "summary": "Add a descriptive meta description",
+        "detail": "Provide a 150-160 character summary of the page.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-005",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing OpenGraph tags",
+      "severity": "medium",
+      "evidence": "og:title present: False, og:description present: False",
+      "suggested_action": {
+        "summary": "Implement OpenGraph tags",
+        "detail": "Add standard OpenGraph tags (og:title, og:description, og:image) for better snippet rendering across platforms and assistants.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-006",
+      "skill_source": "structured-data-audit",
+      "category": "engagement",
+      "title": "Facts locked in images (Missing alt text)",
+      "severity": "medium",
+      "evidence": "57 out of 58 images are missing alt text.",
+      "suggested_action": {
+        "summary": "Add descriptive alt attributes",
+        "detail": "If images contain facts or text, ensure they have alt tags so AI can extract the data.",
+        "priority": "medium",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "ENGAGE-003",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing H1 heading",
+      "severity": "medium",
+      "evidence": "No <h1> tag or role='heading' (aria-level=1) was found on the page.",
+      "suggested_action": {
+        "summary": "Add a single, clear H1 heading",
+        "detail": "Ensure the page has one main H1 heading that describes the primary content for AI summarization.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

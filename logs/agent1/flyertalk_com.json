@@ -1,0 +1,49 @@
+{
+  "site": "www.flyertalk.com",
+  "audited_at": "2026-09-12T14:39:53Z",
+  "summary": {
+    "total_findings": 2,
+    "critical": 2,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-001",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "robots.txt blocks AI crawlers",
+      "severity": "critical",
+      "evidence": "robots.txt is protected or inaccessible (status 403).",
+      "suggested_action": {
+        "summary": "Remove AI crawler blocks from robots.txt",
+        "detail": "Allow AI bots to crawl the site to ensure inclusion in AI overviews and answers.",
+        "priority": "critical",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SKILLS-BLOCKED",
+      "skill_source": "skills",
+      "category": "discoverability",
+      "title": "Site Blocked Bot Access (403)",
+      "severity": "critical",
+      "evidence": "Status: 403. Content indicates bot challenge or block.",
+      "suggested_action": {
+        "summary": "Allow AI crawlers",
+        "detail": "Configure WAF/Cloudflare to whitelist known AI crawlers.",
+        "priority": "critical",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

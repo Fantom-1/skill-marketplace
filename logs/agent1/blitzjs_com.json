@@ -1,0 +1,125 @@
+{
+  "site": "blitzjs.com",
+  "audited_at": "2026-09-12T14:47:47Z",
+  "summary": {
+    "total_findings": 7,
+    "critical": 0,
+    "high": 5,
+    "medium": 2,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-005",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing canonical URL",
+      "severity": "high",
+      "evidence": "No <link rel=\"canonical\"> tag found in the HTML <head>.",
+      "suggested_action": {
+        "summary": "Add a canonical URL tag",
+        "detail": "Add a <link rel=\"canonical\" href=\"...\"> tag to prevent duplicate content issues.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing or broken XML sitemap",
+      "severity": "high",
+      "evidence": "Attempted to fetch https://blitzjs.com/sitemap.xml but got status 404.",
+      "suggested_action": {
+        "summary": "Publish a valid XML sitemap",
+        "detail": "Create a sitemap.xml at the domain root and list it in robots.txt.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-004",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing <meta description>",
+      "severity": "high",
+      "evidence": "No meta description found, or it's too short.",
+      "suggested_action": {
+        "summary": "Add a descriptive meta description",
+        "detail": "Provide a 150-160 character summary of the page.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-003",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing H1 heading",
+      "severity": "medium",
+      "evidence": "No <h1> tag or role='heading' (aria-level=1) was found on the page.",
+      "suggested_action": {
+        "summary": "Add a single, clear H1 heading",
+        "detail": "Ensure the page has one main H1 heading that describes the primary content for AI summarization.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

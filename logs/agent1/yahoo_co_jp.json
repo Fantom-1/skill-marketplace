@@ -1,0 +1,97 @@
+{
+  "site": "www.yahoo.co.jp",
+  "audited_at": "2026-09-12T14:42:54Z",
+  "summary": {
+    "total_findings": 5,
+    "critical": 1,
+    "high": 4,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-001",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "robots.txt blocks AI crawlers",
+      "severity": "critical",
+      "evidence": "The following AI bots are disallowed in robots.txt: GPTBot, Google-Extended",
+      "suggested_action": {
+        "summary": "Remove AI crawler blocks from robots.txt",
+        "detail": "Allow AI bots to crawl the site to ensure inclusion in AI overviews and answers. Remove 'Disallow: /' for these User-agents.",
+        "priority": "critical",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-006",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Heavy JS-rendering dependency detected",
+      "severity": "high",
+      "evidence": "Raw HTML contains very little text (21 words) and contains SPA markers (e.g. empty #root or #app divs, __NEXT_DATA__).",
+      "suggested_action": {
+        "summary": "Implement server-side rendering (SSR) or pre-rendering",
+        "detail": "Ensure that the core content is present in the raw HTML payload sent to crawlers. Use SSR, SSG, or dynamic rendering.",
+        "priority": "high",
+        "effort": "high"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Invalid XML sitemap",
+      "severity": "high",
+      "evidence": "Sitemap at https://www.yahoo.co.jp/sitemap.xml could not be parsed as valid XML.",
+      "suggested_action": {
+        "summary": "Fix sitemap XML syntax",
+        "detail": "Validate your sitemap against the standard XML schema.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

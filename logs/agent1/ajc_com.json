@@ -1,0 +1,13 @@
+{
+  "site": "www.ajc.com",
+  "audited_at": "2026-09-12T14:42:42Z",
+  "summary": {
+    "total_findings": 0,
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "findings": [],
+  "proactive_recommendations": []
+}

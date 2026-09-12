@@ -1,0 +1,223 @@
+{
+  "site": "web.whatsapp.com",
+  "audited_at": "2026-09-12T14:47:53Z",
+  "summary": {
+    "total_findings": 14,
+    "critical": 1,
+    "high": 7,
+    "medium": 5,
+    "low": 1
+  },
+  "findings": [
+    {
+      "id": "CRAWL-002",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Page contains noindex meta tag",
+      "severity": "critical",
+      "evidence": "Found: <meta name=\"robots\" content=\"noindex,nofollow\">",
+      "suggested_action": {
+        "summary": "Remove noindex tag",
+        "detail": "If this page should be discoverable, remove the 'noindex' directive from the meta robots tag.",
+        "priority": "critical",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-005",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing canonical URL",
+      "severity": "high",
+      "evidence": "No <link rel=\"canonical\"> tag found in the HTML <head>.",
+      "suggested_action": {
+        "summary": "Add a canonical URL tag",
+        "detail": "Add a <link rel=\"canonical\" href=\"...\"> tag to prevent duplicate content issues.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-006",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Heavy JS-rendering dependency detected",
+      "severity": "high",
+      "evidence": "Raw HTML contains very little text (16 words) and contains SPA markers (e.g. empty #root or #app divs, __NEXT_DATA__).",
+      "suggested_action": {
+        "summary": "Implement server-side rendering (SSR) or pre-rendering",
+        "detail": "Ensure that the core content is present in the raw HTML payload sent to crawlers. Use SSR, SSG, or dynamic rendering.",
+        "priority": "high",
+        "effort": "high"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing or broken XML sitemap",
+      "severity": "high",
+      "evidence": "Attempted to fetch https://web.whatsapp.com/sitemap.xml but got status 400.",
+      "suggested_action": {
+        "summary": "Publish a valid XML sitemap",
+        "detail": "Create a sitemap.xml at the domain root and list it in robots.txt.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-004",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing <meta description>",
+      "severity": "high",
+      "evidence": "No meta description found, or it's too short.",
+      "suggested_action": {
+        "summary": "Add a descriptive meta description",
+        "detail": "Provide a 150-160 character summary of the page.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-004",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Inconsistent on-page facts (Title vs H1)",
+      "severity": "high",
+      "evidence": "Title ('Error') and H1 ('Sorry, something went wrong.') have zero overlap in words, indicating potential confusion.",
+      "suggested_action": {
+        "summary": "Align Title and H1 tags",
+        "detail": "Ensure your primary H1 heading and page <title> are topically consistent to give strong entity signals.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-005",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing OpenGraph tags",
+      "severity": "medium",
+      "evidence": "og:title present: False, og:description present: False",
+      "suggested_action": {
+        "summary": "Implement OpenGraph tags",
+        "detail": "Add standard OpenGraph tags (og:title, og:description, og:image) for better snippet rendering across platforms and assistants.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-003",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Outdated copyright year",
+      "severity": "medium",
+      "evidence": "Found copyright year 2020, but current year is 2026.",
+      "suggested_action": {
+        "summary": "Update copyright year",
+        "detail": "A stale copyright year is a strong negative freshness signal to automated systems.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-005",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No external corroborating links",
+      "severity": "medium",
+      "evidence": "Found 0 external outbound links.",
+      "suggested_action": {
+        "summary": "Add citations or links to trusted sources",
+        "detail": "Linking to authoritative external sources (like partners, media coverage, Wikipedia) helps ground the entity in the wider knowledge graph.",
+        "priority": "medium",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "ENGAGE-001",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing semantic navigation structure",
+      "severity": "medium",
+      "evidence": "Did not find <nav> elements, role='navigation', or header menu containers with links.",
+      "suggested_action": {
+        "summary": "Use semantic HTML5 <nav> or ARIA navigation roles",
+        "detail": "Wrap main navigation menus in <nav> tags or role='navigation' to provide clear structure for AI crawlers.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "ENGAGE-002",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Missing mobile viewport meta tag",
+      "severity": "low",
+      "evidence": "No <meta name=\"viewport\"> tag found.",
+      "suggested_action": {
+        "summary": "Add viewport meta tag for responsive design",
+        "detail": "Add <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">.",
+        "priority": "low",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

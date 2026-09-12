@@ -1,18 +1,23 @@
 ---
 name: engagement-audit
-description: Audits a website for on-site engagement factors, including clear navigation, CTAs, content depth, and mobile-friendliness.
+description: Audits a website for AI-agent engagement factors, structural navigation accessibility, heading hierarchy, Client-Side Rendering reliance, and conversion actions.
 license: MIT
 ---
 # Engagement Audit
+
 ## When to use
-Use to determine if visitors to a website (including those referred by AI) will have a good experience and stay on the site.
+Use to determine if human visitors and AI agents referred to a website can navigate structure cleanly, extract core text without JavaScript rendering failures, and execute primary Call to Action (CTA) tasks.
+
 ## Inputs
-- `url` (string): The website URL to audit.
+- `url` (string): The website URL or domain to audit.
+
 ## Procedure
 1. Run `scripts/engagement_check.py` on the input URL.
-2. Check for clear `<nav>` and internal link structures.
-3. Check for obvious Call to Action (CTA) buttons.
-4. Check for mobile `<meta name="viewport">`.
-5. Flag thin content (pages with very low word counts) or content buried in carousels.
+2. Evaluate navigation accessibility using HTML5 `<nav>` elements, ARIA `role="navigation"`, or structured header menu containers.
+3. Validate heading hierarchy (`H1` and ARIA heading roles), allowing sectioned `H1` tags inside HTML5 `<section>` or `<article>` wrappers.
+4. Detect Single Page Applications (SPAs) relying on Client-Side Rendering (CSR) that hide main content from basic LLM crawlers, recommending Server-Side Rendering (SSR) or SSG prerendering.
+5. Search interactive elements (`a`, `button`, `input`, `[role="button"]`) across text content, `value`, `aria-label`, and `title` attributes for clear Call to Action (CTA) actions.
+
 ## Output
-A JSON sub-report containing engagement findings related to user retention and accessibility.
+A JSON sub-report containing engagement findings (`ENGAGE-001` through `ENGAGE-006`) formatted according to the report schema.
+

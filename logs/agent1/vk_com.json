@@ -1,0 +1,125 @@
+{
+  "site": "www.vk.com",
+  "audited_at": "2026-09-12T14:45:51Z",
+  "summary": {
+    "total_findings": 7,
+    "critical": 4,
+    "high": 2,
+    "medium": 1,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-ERR",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch homepage",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.vk.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.vk.com', port=443) at 0x22bb9b2a8d0>, 'Connection to www.vk.com timed out. (connect timeout=15)'))",
+      "suggested_action": {
+        "summary": "Ensure server is reachable",
+        "detail": "The audit could not reach the server. Check DNS and server status.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-ERR",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Failed to fetch page for schema audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.vk.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.vk.com', port=443) at 0x1c1ff5ce9f0>, 'Connection to www.vk.com timed out. (connect timeout=15)'))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "FRESH-ERR",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Failed to fetch page for freshness audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.vk.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.vk.com', port=443) at 0x2a8b5dd7ec0>, 'Connection to www.vk.com timed out. (connect timeout=15)'))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "ENGAGE-ERR",
+      "skill_source": "engagement-audit",
+      "category": "engagement",
+      "title": "Failed to fetch page for engagement audit",
+      "severity": "critical",
+      "evidence": "HTTPSConnectionPool(host='www.vk.com', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.vk.com', port=443) at 0x1c12e51ce30>, 'Connection to www.vk.com timed out. (connect timeout=15)'))",
+      "suggested_action": {
+        "summary": "Ensure page is reachable",
+        "detail": "Could not fetch the HTML.",
+        "priority": "critical",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing or broken XML sitemap",
+      "severity": "high",
+      "evidence": "Attempted to fetch https://www.vk.com/sitemap.xml but got status 404.",
+      "suggested_action": {
+        "summary": "Publish a valid XML sitemap",
+        "detail": "Create a sitemap.xml at the domain root and list it in robots.txt.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-004",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing explicit 'About' or 'Company' page link",
+      "severity": "medium",
+      "evidence": "Scanned all on-page navigation links; no link pointing to 'About', 'Company', 'Team', or 'Docs' was found.",
+      "suggested_action": {
+        "summary": "Add a clear About/Company link to navigation",
+        "detail": "A dedicated About or Company page helps establish brand identity and authority for AI models.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}

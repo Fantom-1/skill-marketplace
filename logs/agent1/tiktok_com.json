@@ -1,0 +1,139 @@
+{
+  "site": "www.tiktok.com",
+  "audited_at": "2026-09-12T14:48:44Z",
+  "summary": {
+    "total_findings": 8,
+    "critical": 0,
+    "high": 6,
+    "medium": 2,
+    "low": 0
+  },
+  "findings": [
+    {
+      "id": "CRAWL-005",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Missing canonical URL",
+      "severity": "high",
+      "evidence": "No <link rel=\"canonical\"> tag found in the HTML <head>.",
+      "suggested_action": {
+        "summary": "Add a canonical URL tag",
+        "detail": "Add a <link rel=\"canonical\" href=\"...\"> tag to prevent duplicate content issues.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "CRAWL-003",
+      "skill_source": "crawl-render-audit",
+      "category": "discoverability",
+      "title": "Invalid XML sitemap",
+      "severity": "high",
+      "evidence": "Sitemap at https://www.tiktok.com/sitemap.xml could not be parsed as valid XML.",
+      "suggested_action": {
+        "summary": "Fix sitemap XML syntax",
+        "detail": "Validate your sitemap against the standard XML schema.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "SCHEMA-001",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "No JSON-LD structured data found",
+      "severity": "high",
+      "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+      "suggested_action": {
+        "summary": "Implement schema.org JSON-LD",
+        "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
+        "priority": "high",
+        "effort": "medium"
+      }
+    },
+    {
+      "id": "SCHEMA-004",
+      "skill_source": "structured-data-audit",
+      "category": "discoverability",
+      "title": "Missing <meta description>",
+      "severity": "high",
+      "evidence": "No meta description found, or it's too short.",
+      "suggested_action": {
+        "summary": "Add a descriptive meta description",
+        "detail": "Provide a 150-160 character summary of the page.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-004",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Inconsistent on-page facts (Title vs H1)",
+      "severity": "high",
+      "evidence": "Title ('About | TikTok') and H1 ('Our mission is to inspire creativity and bring joy.') have zero overlap in words, indicating potential confusion.",
+      "suggested_action": {
+        "summary": "Align Title and H1 tags",
+        "detail": "Ensure your primary H1 heading and page <title> are topically consistent to give strong entity signals.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "IDENT-001",
+      "skill_source": "entity-identity-audit",
+      "category": "discoverability",
+      "title": "Missing Organization/Brand Schema",
+      "severity": "high",
+      "evidence": "No structured data (JSON-LD, Microdata, RDFa) block of type Organization, Brand, LocalBusiness, or WebSite was found.",
+      "suggested_action": {
+        "summary": "Add Organization or Brand Schema",
+        "detail": "Implement Organization schema to explicitly define your brand identity to AI search engine crawlers.",
+        "priority": "high",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-001",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "No date signals found",
+      "severity": "medium",
+      "evidence": "No <time> tags or JSON-LD date properties were found.",
+      "suggested_action": {
+        "summary": "Add publication and modification dates",
+        "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements so AI knows the freshness of the content.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    },
+    {
+      "id": "FRESH-003",
+      "skill_source": "freshness-corroboration",
+      "category": "discoverability",
+      "title": "Outdated copyright year",
+      "severity": "medium",
+      "evidence": "Found copyright year 2025, but current year is 2026.",
+      "suggested_action": {
+        "summary": "Update copyright year",
+        "detail": "A stale copyright year is a strong negative freshness signal to automated systems.",
+        "priority": "medium",
+        "effort": "low"
+      }
+    }
+  ],
+  "proactive_recommendations": [
+    {
+      "id": "R-001",
+      "title": "Establish a consistent Knowledge Graph presence",
+      "rationale": "Even if structured data is valid, explicitly linking to a maintained Wikipedia or Wikidata entity acts as an anchor for AI to ground facts about the brand.",
+      "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
+    },
+    {
+      "id": "R-002",
+      "title": "Publish an AI Policy / Terms of Service",
+      "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
+      "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+    }
+  ]
+}
