@@ -35,19 +35,13 @@ Once the pipeline finishes, it will generate an analysis report:
 3. **Patch the Skills:** Navigate to the `brand-ai-readiness-audit/skills/` directory and modify the underlying Python scripts (`crawl_check.py`, `engagement_check.py`, etc.) to fix the bugs or adjust the heuristic thresholds. 
    - *Example: If `engagement_check.py` is flagging "Thin content" on a site that you know is an SPA, you need to update `engagement_check.py` to be smarter about JS-rendered text.*
 
-## 4. Evaluate and Tune
-Your specific assignment focuses exclusively on `schema_check.py` and `freshness_check.py`.
-1. Review the output logs for your 70 sites. 
-2. Identify False Positives / False Negatives:
-   - Is `schema_check.py` failing to detect schema on sites that inject it dynamically via Tag Manager?
-   - Is `freshness_check.py` flagging ancient raw-HTML university pages just because they don't have an article `<time>` tag, even if a copyright date exists in the footer?
-3. Tune the logic in your assigned scripts (adjust thresholds, add fallbacks to scan footers for dates, or refine the JSON-LD parsing).
-4. Re-run the pipeline to ensure your fixes worked.
-
-## 5. Push Your Code
-Once your pipeline runs cleanly with accurate diagnostics, commit your code and push:
+## 4. Iterate and Commit
+1. Re-run the pipeline to ensure your fixes worked and didn't cause regressions on your other sites.
+2. Once your pipeline runs cleanly with zero crashes and zero flagged anomalies, commit your code and logs.
 ```bash
 git add .
-git commit -m "agent2: Tuned heuristics for schema and freshness"
-git push origin agent2
+git commit -m "agent1: Fixed SPA engagement bug and tuned schema threshold"
+git push
 ```
+
+
