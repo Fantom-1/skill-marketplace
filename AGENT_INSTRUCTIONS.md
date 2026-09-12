@@ -43,3 +43,18 @@ git add .
 git commit -m "agent1: Fixed SPA engagement bug and tuned schema threshold"
 git push
 ```
+
+---
+
+# 🚀 Iteration 2: Heuristics & False Positives (Current Phase)
+*The crashes, UTF-8 errors, and bot-mitigation bugs from Iteration 1 have been solved and merged!*
+
+**Your new objective for Iteration 2:**
+1. **Pull the latest `main`:** Your branch must have the latest robust parsing logic. 
+   ```bash
+   git pull origin main
+   ```
+2. **Re-run the Pipeline:** Execute `python scripts/run_pipeline.py <your_agent_name>` again.
+3. **Hunt False Positives / False Negatives:** Now that the script doesn't crash, look at the logical output. Is it flagging Apple.com as having "Thin Content"? Is it failing to realize a local business has no schema?
+4. **Tune the Heuristics:** Open `engagement_check.py` and `identity_check.py`. Adjust the word-count thresholds, add edge cases for SPAs, or refine the JSON-LD parsing logic to be smarter.
+5. **Push:** Commit your tuning adjustments and push them back!
