@@ -32,8 +32,9 @@ Once the pipeline finishes, it will generate an analysis report:
 
 1. **Read the Analysis Report:** This is your primary diagnostic tool. Look for crashes, timeouts, or the automated warnings indicating your severity thresholds might be too aggressive.
 2. **Review the JSON:** If a site failed or threw an anomaly, open its specific JSON file in the `logs/` directory to see exactly which `id` (e.g., `CRAWL-003` or `ENGAGE-005`) triggered the issue.
-3. **Patch the Skills:** Navigate to the `brand-ai-readiness-audit/skills/` directory and modify the underlying Python scripts (`crawl_check.py`, `engagement_check.py`, etc.) to fix the bugs or adjust the heuristic thresholds. 
+3. **Patch the Code:** Navigate to the `brand-ai-readiness-audit/skills/` directory and modify the underlying Python scripts (`crawl_check.py`, `engagement_check.py`, etc.) to fix the bugs or adjust the heuristic thresholds. 
    - *Example: If `engagement_check.py` is flagging "Thin content" on a site that you know is an SPA, you need to update `engagement_check.py` to be smarter about JS-rendered text.*
+4. **Improve the Skill (`SKILL.md`):** Do not just fix the Python code! You are building an Agent Skill for the marketplace. If you notice the diagnostic outputs could be better structured, or the orchestrator needs better AI prompts, update the `SKILL.md` files and the report schemas to improve the overall quality of the skill.
 
 ## 4. Iterate and Commit
 1. Re-run the pipeline to ensure your fixes worked and didn't cause regressions on your other sites.
