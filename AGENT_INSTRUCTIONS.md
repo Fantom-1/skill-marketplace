@@ -46,15 +46,17 @@ git push
 
 ---
 
-# 🚀 Iteration 2: Heuristics & False Positives (Current Phase)
-*The crashes, UTF-8 errors, and bot-mitigation bugs from Iteration 1 have been solved and merged!*
+# 🚀 Iteration 2: Heuristics & False Positives
 
-**Your new objective for Iteration 2:**
-1. **Pull the latest `main`:** Your branch must have the latest robust parsing logic. 
+**Your specific assignment for Iteration 2 focuses exclusively on `identity_check.py` and `engagement_check.py`.**
+
+1. **Pull the latest `main`:** The `main` branch now contains robust, crash-proof anti-bot/parsing logic. Ensure your branch has this code.
    ```bash
    git pull origin main
    ```
-2. **Re-run the Pipeline:** Execute `python scripts/run_pipeline.py <your_agent_name>` again.
-3. **Hunt False Positives / False Negatives:** Now that the script doesn't crash, look at the logical output. Is it flagging Apple.com as having "Thin Content"? Is it failing to realize a local business has no schema?
-4. **Tune the Heuristics:** Open `engagement_check.py` and `identity_check.py`. Adjust the word-count thresholds, add edge cases for SPAs, or refine the JSON-LD parsing logic to be smarter.
+2. **Re-run the Pipeline:** Execute `python scripts/run_pipeline.py agent1` to run against your gritty corpus.
+3. **Hunt False Positives / False Negatives:** Now that the script doesn't crash, look at the logical outputs in your logs. 
+   - Is `engagement_check.py` flagging modern SPAs (like Uniswap) as having "Thin Content" just because it can't render JS?
+   - Is `identity_check.py` failing to extract phone numbers or social links from local businesses?
+4. **Tune the Heuristics:** Open `engagement_check.py` and `identity_check.py` and improve their logic. Adjust word-count thresholds, add specific edge cases for SPAs, or refine regexes for local businesses.
 5. **Push:** Commit your tuning adjustments and push them back!
