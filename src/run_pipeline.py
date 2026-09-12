@@ -10,7 +10,7 @@ def slugify(url):
 
 def run_pipeline(agent_name):
     # Load corpus
-    with open("test_corpus.json", "r", encoding="utf-8") as f:
+    with open("data/test_corpus.json", "r", encoding="utf-8") as f:
         corpus = json.load(f)
         
     if agent_name not in corpus:
