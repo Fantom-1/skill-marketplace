@@ -1,6 +1,7 @@
 {
   "site": "example.com",
   "audited_at": "2026-09-20T14:32:00Z",
+  "is_spa_degraded": false,
   "summary": {
     "total_findings": 0,
     "critical": 0,
@@ -15,6 +16,7 @@
       "category": "discoverability | engagement",
       "title": "string",
       "severity": "critical | high | medium | low",
+      "confidence": "high | medium | low",
       "evidence": "string",
       "suggested_action": {
         "summary": "string",

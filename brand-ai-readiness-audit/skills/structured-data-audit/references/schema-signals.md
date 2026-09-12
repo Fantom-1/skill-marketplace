@@ -2,9 +2,10 @@
 
 | Signal | Domain | Severity | Detection Mechanism |
 |--------|--------|----------|---------------------|
-| No JSON-LD | Discoverability | High | Extract with `extruct`. Flag if 0 JSON-LD elements exist. |
-| Invalid/Missing Schema | Discoverability | High | Basic validation of JSON-LD properties (e.g., Organization requires name, url). |
+| No JSON-LD / Microdata | Discoverability | High / Medium (SPA) | Extract with `extruct` (`json-ld`, `microdata`). Flag if 0 elements exist. |
+| Invalid/Missing Schema | Discoverability | Medium | Validates `name` or `headline` on targeted schema (Organization, Product, LocalBusiness, Article, Person). |
 | Missing OpenGraph | Discoverability | Medium | Check `<meta property="og:title">`, `og:description`, `og:image`. |
-| Missing Title/Desc | Discoverability | High | Check `<title>` and `<meta name="description">`. |
-| Text vs Image facts | Engagement | Medium | High ratio of `<img>` without `alt` tags. |
-| Low Text Density | Engagement | Medium | Very few plain-text paragraphs compared to the raw HTML size. |
+| Missing Title/Desc | Discoverability | High / Medium (SPA) | Check `<title>` and `<meta name="description">`. |
+| Text vs Image facts | Engagement | Medium | High ratio (>50% AND >=3) of `<img>` without `alt` tags. |
+
+**Note**: All schema findings may include a `confidence: "low"` field if an SPA framework or interstitial shell is detected, as static scraping may miss JS-rendered schema.
