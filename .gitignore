@@ -3,4 +3,4 @@ __pycache__/
 .venv/
 logs/
 brand-ai-readiness-audit.zip
-*.zip
+
