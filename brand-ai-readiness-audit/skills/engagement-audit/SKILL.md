@@ -1,6 +1,7 @@
 ---
 name: engagement-audit
 description: Audits a website for AI-agent engagement factors, structural navigation accessibility, heading hierarchy, Client-Side Rendering reliance, and conversion actions.
+allowed-tools: [web_fetch, bash]
 license: MIT
 ---
 # Engagement Audit

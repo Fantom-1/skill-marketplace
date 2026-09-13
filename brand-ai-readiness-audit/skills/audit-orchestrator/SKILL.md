@@ -1,6 +1,7 @@
 ---
 name: audit-orchestrator
 description: Master entrypoint skill orchestrating 5 specialist audit skills (crawl-render, structured-data, freshness, entity-identity, engagement) to output a merged, prioritized Brand AI-Readiness Audit report.
+allowed-tools: [web_fetch, bash]
 license: MIT
 ---
 # Brand AI-Readiness Audit Orchestrator
@@ -18,6 +19,7 @@ Use when auditing any website or domain to evaluate LLM crawler discoverability,
    - `freshness-corroboration` (`freshness_check.py`)
    - `entity-identity-audit` (`identity_check.py`)
    - `engagement-audit` (`engagement_check.py`)
+   - `content-extraction-audit` (`extraction_check.py`)
 2. Pass sub-reports to `scripts/merge_report.py` for deduplication, severity sorting, and proactive strategic recommendation generation.
 3. Validate output against `references/report-schema.json`.
 

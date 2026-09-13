@@ -11,6 +11,7 @@ An Agent Skill Marketplace that audits websites for AI discoverability and on-si
 | `freshness-corroboration` | Specialist | Checks content dates for staleness and corroboration signals (Appendix D). |
 | `entity-identity-audit` | Specialist | Checks brand name ambiguity, missing knowledge graph links, and consistent identity (Appendix D). |
 | `engagement-audit` | Specialist | Evaluates content engagement, navigation, CTAs, and mobile support (Appendix E, F). |
+| `content-extraction-audit` | Specialist | Checks if core text is easily extractable (semantic tags, boilerplate ratio, interstitials). |
 
 ## How the Entrypoint Composes Skills
 ```text
@@ -36,4 +37,5 @@ An Agent Skill Marketplace that audits websites for AI discoverability and on-si
 ## Design Decisions
 - **Skill Decomposition:** Separating by domain ensures clean logic without overlapping responsibilities, per the rubric's "genuine separation of concerns."
 - **No Headless Browser:** To keep runtime < 5 mins and avoid heavy dependencies, JS-rendering issues are detected heuristically (e.g., framework markers, `<noscript>` tags) instead of via Playwright.
-- **Output Schema:** Extends the mandatory base schema to include categories, effort level, and beyond-problem proactive recommendations.
+- **SPA Awareness:** Single Page Applications (React, Vue) are natively detected by scanning for CSR payload variables (e.g., `__INITIAL_STATE__`). When an SPA is detected, heuristic penalties for "Thin Content" are suppressed, and HTML-schema failures are degraded to "low confidence" since they might be injected dynamically via JS.
+- **Output Schema:** Extends the mandatory base schema to include categories, confidence markers, effort level, and beyond-problem proactive recommendations.

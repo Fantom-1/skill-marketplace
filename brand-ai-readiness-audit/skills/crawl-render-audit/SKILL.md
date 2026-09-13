@@ -1,6 +1,7 @@
 ---
 name: crawl-render-audit
 description: Audits a website for crawlability issues (robots.txt blocks, noindex, broken sitemaps) and heavy JS-render dependencies that block basic AI extraction.
+allowed-tools: [web_fetch, bash]
 license: MIT
 ---
 # Crawl & Render Audit

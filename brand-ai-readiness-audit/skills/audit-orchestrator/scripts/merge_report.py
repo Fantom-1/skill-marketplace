@@ -49,7 +49,8 @@ def main():
         os.path.join(base_dir, "structured-data-audit", "scripts", "schema_check.py"),
         os.path.join(base_dir, "freshness-corroboration", "scripts", "freshness_check.py"),
         os.path.join(base_dir, "entity-identity-audit", "scripts", "identity_check.py"),
-        os.path.join(base_dir, "engagement-audit", "scripts", "engagement_check.py")
+        os.path.join(base_dir, "engagement-audit", "scripts", "engagement_check.py"),
+        os.path.join(base_dir, "content-extraction-audit", "scripts", "extraction_check.py")
     ]
     
     all_findings = []

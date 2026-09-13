@@ -7,6 +7,7 @@
     { "id": "structured-data-audit", "path": "skills/structured-data-audit" },
     { "id": "freshness-corroboration", "path": "skills/freshness-corroboration" },
     { "id": "entity-identity-audit", "path": "skills/entity-identity-audit" },
-    { "id": "engagement-audit", "path": "skills/engagement-audit" }
+    { "id": "engagement-audit", "path": "skills/engagement-audit" },
+    { "id": "content-extraction-audit", "path": "skills/content-extraction-audit" }
   ]
 }

@@ -1,4 +1,9 @@
 import sys
+import os
+
+# Add shared directory to path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
+from shared.bot_detection import is_blocked_response
 import json
 import re
 from urllib.parse import urlparse
@@ -26,18 +31,6 @@ FRAMEWORK_MARKERS = [
     'window.__initial_state__', 'react', 'vue', 'angular', 'svelte', 'gatsby'
 ]
 
-def is_blocked_response(resp):
-    if resp.status_code in (403, 429):
-        return True
-    html = resp.text or ""
-    html_lower = html.lower()
-    if "<title>just a moment...</title>" in html_lower or "<title>attention required! | cloudflare</title>" in html_lower:
-        return True
-    if "cf-chl-bypass" in html or "cf-browser-verification" in html or "challenge-platform" in html or "_cf_chl_opt" in html:
-        return True
-    if resp.status_code != 200 and ("cloudflare" in html_lower or "captcha" in html_lower or "access denied" in html_lower):
-        return True
-    return False
 
 def check_engagement(url, html):
     findings = []
@@ -250,6 +243,12 @@ def main():
     try:
         resp = requests.get(url, headers=HEADERS, timeout=15, verify=False)
         html = resp.text
+        
+        content_type = resp.headers.get('content-type', '').lower()
+        if 'text/html' not in content_type and 'text/plain' not in content_type:
+            print(json.dumps({"error": "Target URL is not an HTML page (e.g. JSON API or binary file). Audit not applicable."}))
+            return
+            
         if is_blocked_response(resp):
             all_findings.append({
                 "id": "SKILLS-BLOCKED",
