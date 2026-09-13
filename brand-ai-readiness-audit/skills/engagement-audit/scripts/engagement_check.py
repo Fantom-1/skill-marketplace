@@ -30,12 +30,25 @@ FRAMEWORK_MARKERS = [
 ]
 
 
+def detect_page_type_basic(url, soup):
+    path = urlparse(url).path.lower()
+    if '/blog' in path or '/news' in path or '/article' in path:
+        return 'article'
+    if '/product' in path or '/pricing' in path or '/store' in path:
+        return 'commercial'
+    og_type = soup.find('meta', property='og:type')
+    if og_type and og_type.get('content') == 'product':
+        return 'commercial'
+    return 'informational'
+
 def check_engagement(url, html):
     findings = []
     soup = BeautifulSoup(html, 'html.parser')
     parsed_url = urlparse(url)
     domain_lower = parsed_url.netloc.lower()
     path_lower = parsed_url.path.lower()
+    
+    page_type = detect_page_type_basic(url, soup)
     
     is_web_app_or_login = (
         domain_lower.startswith('app.') or
@@ -210,17 +223,18 @@ def check_engagement(url, html):
             break
             
     if not has_cta:
+        severity = "medium" if page_type == 'commercial' else "low"
         findings.append({
             "id": "ENGAGE-006",
             "skill_source": "engagement-audit",
             "category": "engagement",
             "title": "No obvious Call to Action (CTA)",
-            "severity": "medium",
-            "evidence": "Did not detect standard CTA actions (buy, sign up, contact, learn, try, search, connect) in interactive elements.",
+            "severity": severity,
+            "evidence": f"Did not detect standard CTA actions (buy, sign up, contact, learn, try, search, connect) in interactive elements. (Page type: {page_type})",
             "suggested_action": {
                 "summary": "Add clear CTAs",
                 "detail": "Guide visitors and AI agents to primary conversion or engagement actions.",
-                "priority": "medium",
+                "priority": severity,
                 "effort": "low"
             }
         })

@@ -175,18 +175,29 @@ def check_meta_tags(url, html, spa_detected):
     images = soup.find_all('img')
     images_no_alt = [img for img in images if not img.get('alt')]
     if images_no_alt:
+        total_images = len(images)
+        missing_count = len(images_no_alt)
+        missing_ratio = missing_count / total_images if total_images > 0 else 0
+        
+        if missing_ratio > 0.5 and missing_count >= 5:
+            severity = "high"
+        elif missing_ratio >= 0.2 and missing_count >= 3:
+            severity = "medium"
+        else:
+            severity = "low"
+            
         findings.append({
             "id": "SCHEMA-006",
             "skill_source": "structured-data-audit",
             "category": "engagement",
             "title": "Images missing alt text",
-            "severity": "high",
+            "severity": severity,
             "confidence": confidence,
-            "evidence": spa_note + f"Found {len(images_no_alt)} <img> tags without 'alt' attribute; AI systems cannot interpret image content.",
+            "evidence": spa_note + f"Found {missing_count}/{total_images} ({(missing_ratio*100):.0f}%) <img> tags without 'alt' attribute.",
             "suggested_action": {
                 "summary": "Add descriptive alt text to all images",
                 "detail": "Use alt=\"[brief, descriptive text]\" to help AI understand visual content.",
-                "priority": "high",
+                "priority": severity,
                 "effort": "low"
             }
         })

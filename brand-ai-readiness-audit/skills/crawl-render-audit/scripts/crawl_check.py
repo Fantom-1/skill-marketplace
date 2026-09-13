@@ -143,21 +143,6 @@ def check_html_signals(url, html, response_size):
                     "effort": "high"
                 }
             })
-        elif body_words > 300 and has_js_markers:
-            findings.append({
-                "id": "CRAWL-006-SSR",
-                "skill_source": "crawl-render-audit",
-                "category": "discoverability",
-                "title": "JS-rendering Framework Detected (SSR Working)",
-                "severity": "low",
-                "evidence": f"Framework markers detected, but raw HTML contains sufficient content ({body_words} words). JS execution may not be required for AI indexing.",
-                "suggested_action": {
-                    "summary": "Monitor dynamic content rendering",
-                    "detail": "Server-side rendering appears functional. Ensure any lazily loaded content important for AI is also rendered serverside.",
-                    "priority": "low",
-                    "effort": "low"
-                }
-            })
         
     # 7. Iframes
     iframes = soup.find_all('iframe')

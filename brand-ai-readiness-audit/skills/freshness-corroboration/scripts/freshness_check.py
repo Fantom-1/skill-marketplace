@@ -24,6 +24,27 @@ def is_spa_shell(html, soup):
     markers = bool(re.search(r'id=["\'](?:root|app|__next)["\']|__NEXT_DATA__|window\.__INITIAL_STATE__', html))
     return words < 100 or (words < 300 and markers)
 
+def detect_page_type(url, soup, json_ld):
+    for item in json_ld:
+        if isinstance(item, dict):
+            item_type = item.get('@type', '')
+            if isinstance(item_type, list):
+                item_type = ' '.join(item_type)
+            item_type = item_type.lower()
+            if 'article' in item_type or 'news' in item_type or 'blogposting' in item_type:
+                return 'article'
+            if 'product' in item_type or 'offer' in item_type:
+                return 'commercial'
+    path = urlparse(url).path.lower()
+    if '/blog' in path or '/news' in path or '/article' in path:
+        return 'article'
+    if '/product' in path or '/pricing' in path or '/store' in path:
+        return 'commercial'
+    og_type = soup.find('meta', property='og:type')
+    if og_type and og_type.get('content') == 'article':
+        return 'article'
+    return 'informational'
+
 def check_freshness(url, html, headers_dict):
     findings = []
     soup = BeautifulSoup(html, 'html.parser')
@@ -43,6 +64,7 @@ def check_freshness(url, html, headers_dict):
     except Exception:
         json_ld = []
 
+    page_type = detect_page_type(url, soup, json_ld)
     dates_found = []
     
     for item in json_ld:
@@ -82,18 +104,25 @@ def check_freshness(url, html, headers_dict):
                     stale_date = str(max_year)
                     stale_years_diff = current_year - max_year
         
+        if is_stale:
+            severity = "medium"
+        elif page_type == 'article':
+            severity = "high"
+        else:
+            severity = "low"
+            
         findings.append({
             "id": "FRESH-001",
             "skill_source": "freshness-corroboration",
             "category": "discoverability",
             "title": "No explicit date metadata found",
-            "severity": "high" if not is_stale else "medium", # Escalate if total absence of dates and not caught by stale
+            "severity": severity,
             "confidence": confidence,
-            "evidence": spa_note + "No <time> tags or JSON-LD date properties were found.",
+            "evidence": spa_note + f"No <time> tags or JSON-LD date properties were found. (Page type: {page_type})",
             "suggested_action": {
                 "summary": "Add publication and modification dates",
                 "detail": "Use standard schema.org datePublished/dateModified and HTML5 <time> elements.",
-                "priority": "high",
+                "priority": severity,
                 "effort": "low"
             }
         })

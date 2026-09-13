@@ -67,9 +67,20 @@ def main():
     seen_ids = set()
     seen_titles = set()
     
+    # Check for blocking or critical fetch errors
+    is_blocked = any(f.get('id') == "SKILLS-BLOCKED" or str(f.get('id')).endswith("-ERR") for f in all_findings)
+    has_schema_001 = any(f.get('id') == "SCHEMA-001" for f in all_findings)
+    
     for f in all_findings:
         fid = f.get('id')
         title = f.get('title')
+        
+        if is_blocked and fid != "SKILLS-BLOCKED" and not str(fid).endswith("-ERR"):
+            continue # Suppress secondary findings if blocked
+            
+        if fid == "IDENT-001" and has_schema_001:
+            continue # Deduplicate root cause: No JSON-LD implies missing Org schema
+            
         if fid and fid in seen_ids:
             continue
         if title and title in seen_titles:
