@@ -2,10 +2,12 @@ import sys
 import json
 import subprocess
 import os
+import re
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3}
+
 
 def run_skill_script(script_path, url):
     try:
@@ -97,8 +99,8 @@ def main():
     # Add proactive recommendations dynamically based on findings
     proactive = []
     
-    # Check if identity/schema was missing
-    has_identity_issue = any("IDENT-" in f.get('id', '') or "SCHEMA-" in f.get('id', '') for f in unique_findings)
+    # Check if primary identity/schema is missing (R-001 only triggers on SCHEMA-001 or IDENT-001)
+    has_identity_issue = any(f.get('id') in ("SCHEMA-001", "IDENT-001") for f in unique_findings)
     if has_identity_issue:
         proactive.append({
             "id": "R-001",
@@ -107,14 +109,40 @@ def main():
             "suggested_action": "Claim your Wikidata item, ensure Wikipedia is accurate, and link to them using JSON-LD sameAs."
         })
         
-    # Check if crawl issues exist
-    has_crawl_issue = any("CRAWL-" in f.get('id', '') for f in unique_findings)
+    # Check if explicit CRAWL-001 block exists (R-002 only triggers on explicit CRAWL-001 disallows)
+    has_crawl_issue = any(f.get('id') == "CRAWL-001" for f in unique_findings)
     if has_crawl_issue:
         proactive.append({
             "id": "R-002",
             "title": "Publish an AI Policy / Terms of Service",
             "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
             "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+        })
+
+    # Check for question/answer content lacking FAQPage schema (R-003)
+    findings_text = " ".join(
+        f"{f.get('title', '')} {f.get('evidence', '')} {json.dumps(f.get('suggested_action', {}))}"
+        for f in unique_findings
+    )
+    has_question_content = bool(re.search(r'\b(how|what|why)\b', findings_text, re.IGNORECASE))
+    has_faq_schema = "faq" in findings_text.lower() or "faqpage" in findings_text.lower()
+    
+    if has_question_content and not has_faq_schema:
+        proactive.append({
+            "id": "R-003",
+            "title": "Implement FAQPage Structured Data",
+            "rationale": "Content answering common user questions ('how', 'what', 'why') benefits from JSON-LD FAQPage schema to enable direct Q&A snippet extraction by AI engines.",
+            "suggested_action": "Mark up key Q&A sections with FAQPage schema using Question and Answer elements."
+        })
+
+    # Check if FRESH-002 (Stale dates) is triggered (R-004)
+    has_stale_dates = any(f.get('id') == "FRESH-002" for f in unique_findings)
+    if has_stale_dates:
+        proactive.append({
+            "id": "R-004",
+            "title": "Establish a Content Refresh Cadence",
+            "rationale": "Outdated content dates signal low freshness to AI crawlers, reducing confidence in answers generated from your pages.",
+            "suggested_action": "Establish a periodic content review process to refresh outdated facts and update dateModified metadata."
         })
     
     report = {

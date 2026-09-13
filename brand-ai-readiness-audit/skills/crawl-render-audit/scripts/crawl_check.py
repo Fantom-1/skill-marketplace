@@ -41,15 +41,15 @@ def check_robots_txt(url):
             rp.parse(resp.text.splitlines())
         elif resp.status_code in (401, 403):
             findings.append({
-                "id": "CRAWL-001",
+                "id": "CRAWL-WAF",
                 "skill_source": "crawl-render-audit",
                 "category": "discoverability",
-                "title": "robots.txt blocks AI crawlers",
+                "title": "WAF blocks robots.txt access",
                 "severity": "critical",
-                "evidence": f"robots.txt is protected or inaccessible (status {resp.status_code}).",
+                "evidence": f"robots.txt is protected or inaccessible due to WAF/security firewall (status {resp.status_code}).",
                 "suggested_action": {
-                    "summary": "Remove AI crawler blocks from robots.txt",
-                    "detail": "Allow AI bots to crawl the site to ensure inclusion in AI overviews and answers.",
+                    "summary": "Whitelist crawler IP in WAF",
+                    "detail": "Configure WAF/security settings to whitelist crawler IP and allow access to robots.txt.",
                     "priority": "critical",
                     "effort": "low"
                 }
