@@ -1,9 +1,7 @@
 import sys
 import os
 
-# Add shared directory to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
-from shared.bot_detection import is_blocked_response
+from bot_detection import is_blocked_response
 import json
 import requests
 from bs4 import BeautifulSoup
