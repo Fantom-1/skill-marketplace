@@ -25,49 +25,84 @@ def is_blocked_response(resp):
         return True
     return False
 
-def check_structured_data(url, html):
+def is_spa_shell(html, soup):
+    text = soup.body.get_text(separator=' ', strip=True) if soup.body else ""
+    words = len(text.split())
+    markers = bool(re.search(r'id=["\'](?:root|app|__next)["\']|__NEXT_DATA__|window\.__INITIAL_STATE__', html))
+    return words < 100 or (words < 300 and markers)
+
+def check_structured_data(url, html, spa_detected):
     findings = []
     try:
         base_url = get_base_url(html, url)
     except Exception:
         base_url = url
     
+    confidence = "low" if spa_detected else "high"
+    spa_note = "[SPA/interstitial shell detected - JS rendering required] " if spa_detected else ""
+    base_severity = "medium" if spa_detected else "high"
+
     # Extract metadata
     try:
-        data = extruct.extract(html, base_url=base_url, syntaxes=['json-ld'])
+        data = extruct.extract(html, base_url=base_url, syntaxes=['json-ld', 'microdata'])
         json_ld = data.get('json-ld', []) if isinstance(data, dict) else []
+        microdata = data.get('microdata', []) if isinstance(data, dict) else []
+        combined_data = json_ld + microdata
     except Exception:
-        json_ld = []
+        combined_data = []
         
-    if not json_ld:
+    if not combined_data:
         findings.append({
             "id": "SCHEMA-001",
             "skill_source": "structured-data-audit",
             "category": "discoverability",
             "title": "No JSON-LD structured data found",
-            "severity": "high",
-            "evidence": "extruct parser found 0 JSON-LD objects on the page.",
+            "severity": base_severity,
+            "confidence": confidence,
+            "evidence": spa_note + "extruct parser found 0 JSON-LD or microdata objects on the page.",
             "suggested_action": {
                 "summary": "Implement schema.org JSON-LD",
                 "detail": "Add standard schema.org types like Organization, WebSite, or Product to help AI assistants understand your entities.",
-                "priority": "high",
+                "priority": base_severity,
                 "effort": "medium"
             }
         })
     else:
         missing_names = []
-        for item in json_ld:
-            if isinstance(item, dict) and '@type' in item:
-                if 'name' not in item and 'headline' not in item:
-                    missing_names.append(str(item.get('@type', 'Unknown')))
+        target_types = {'Organization', 'Product', 'LocalBusiness', 'Article', 'Person'}
+        
+        for item in combined_data:
+            if isinstance(item, dict):
+                item_type = item.get('@type', 'Unknown')
+                # handle lists in type
+                if isinstance(item_type, list):
+                    has_target = any(t in target_types for t in item_type)
+                    t_str = str(item_type)
+                else:
+                    has_target = item_type in target_types
+                    t_str = item_type
+
+                if has_target:
+                    name = item.get('name')
+                    if not name and 'properties' in item:
+                        name = item['properties'].get('name')
+                        
+                    headline = item.get('headline')
+                    if not headline and 'properties' in item:
+                        headline = item['properties'].get('headline')
+                        
+                    if not name and not headline:
+                        missing_names.append(t_str)
+
         if missing_names:
             findings.append({
                 "id": "SCHEMA-002",
                 "skill_source": "structured-data-audit",
                 "category": "discoverability",
-                "title": "Missing required properties in JSON-LD",
+                "title": "Missing required properties in Structured Data",
                 "severity": "medium",
-                "evidence": f"Found these types missing a 'name' or 'headline' property: {', '.join(missing_names)}",
+                "confidence": confidence,
+                "evidence": spa_note + f"Found these types missing a 'name' or 'headline' property: {', '.join(missing_names)}",
                 "suggested_action": {
                     "summary": "Ensure all schema blocks have a name",
                     "detail": "Provide a descriptive name property for all schema.org entities.",
@@ -78,9 +113,12 @@ def check_structured_data(url, html):
 
     return findings
 
-def check_meta_tags(url, html):
+def check_meta_tags(url, html, spa_detected):
     findings = []
     soup = BeautifulSoup(html, 'html.parser')
+    confidence = "low" if spa_detected else "high"
+    spa_note = "[SPA/interstitial shell detected] " if spa_detected else ""
+    base_severity = "medium" if spa_detected else "high"
     
     # Title & Meta Description
     title_text = soup.title.get_text(strip=True) if soup.title else ""
@@ -93,12 +131,13 @@ def check_meta_tags(url, html):
             "skill_source": "structured-data-audit",
             "category": "discoverability",
             "title": "Missing or very short <title>",
-            "severity": "high",
-            "evidence": f"Title tag found: {title_text if title_text else 'None'}",
+            "severity": base_severity,
+            "confidence": confidence,
+            "evidence": spa_note + f"Title tag found: {title_text if title_text else 'None'}",
             "suggested_action": {
                 "summary": "Add a descriptive <title> tag",
                 "detail": "Include a meaningful, brand-inclusive title.",
-                "priority": "high",
+                "priority": base_severity,
                 "effort": "low"
             }
         })
@@ -109,12 +148,13 @@ def check_meta_tags(url, html):
             "skill_source": "structured-data-audit",
             "category": "discoverability",
             "title": "Missing <meta description>",
-            "severity": "high",
-            "evidence": "No meta description found, or it's too short.",
+            "severity": base_severity,
+            "confidence": confidence,
+            "evidence": spa_note + "No meta description found, or it's too short.",
             "suggested_action": {
                 "summary": "Add a descriptive meta description",
                 "detail": "Provide a 150-160 character summary of the page.",
-                "priority": "high",
+                "priority": base_severity,
                 "effort": "low"
             }
         })
@@ -130,7 +170,8 @@ def check_meta_tags(url, html):
             "category": "discoverability",
             "title": "Missing OpenGraph tags",
             "severity": "medium",
-            "evidence": f"og:title present: {bool(og_title)}, og:description present: {bool(og_desc)}",
+            "confidence": confidence,
+            "evidence": spa_note + f"og:title present: {bool(og_title)}, og:description present: {bool(og_desc)}",
             "suggested_action": {
                 "summary": "Implement OpenGraph tags",
                 "detail": "Add standard OpenGraph tags (og:title, og:description, og:image) for better snippet rendering across platforms and assistants.",
@@ -142,14 +183,15 @@ def check_meta_tags(url, html):
     # Images missing alt text
     images = soup.find_all('img')
     images_no_alt = [img for img in images if not img.get('alt')]
-    if images and (len(images_no_alt) / len(images)) > 0.5:
+    if images and len(images_no_alt) >= 3 and (len(images_no_alt) / len(images)) > 0.5:
         findings.append({
             "id": "SCHEMA-006",
             "skill_source": "structured-data-audit",
             "category": "engagement",
             "title": "Facts locked in images (Missing alt text)",
             "severity": "medium",
-            "evidence": f"{len(images_no_alt)} out of {len(images)} images are missing alt text.",
+            "confidence": confidence,
+            "evidence": spa_note + f"{len(images_no_alt)} out of {len(images)} images are missing alt text.",
             "suggested_action": {
                 "summary": "Add descriptive alt attributes",
                 "detail": "If images contain facts or text, ensure they have alt tags so AI can extract the data.",
@@ -192,8 +234,11 @@ def main():
             print(json.dumps({"findings": all_findings}, indent=2))
             return
         
-        all_findings.extend(check_structured_data(url, html))
-        all_findings.extend(check_meta_tags(url, html))
+        soup = BeautifulSoup(html, 'html.parser')
+        spa_detected = is_spa_shell(html, soup)
+        
+        all_findings.extend(check_structured_data(url, html, spa_detected))
+        all_findings.extend(check_meta_tags(url, html, spa_detected))
         
     except Exception as e:
         all_findings.append({
@@ -215,4 +260,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
