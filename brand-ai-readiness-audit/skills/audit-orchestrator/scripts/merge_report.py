@@ -98,7 +98,7 @@ def main():
     proactive = []
     
     # Check if identity/schema was missing
-    has_identity_issue = any("IDENT-" in f.get('id', '') or "SCHEMA-" in f.get('id', '') for f in unique_findings)
+    has_identity_issue = any(f.get('id', '') in ["SCHEMA-001", "IDENT-001"] for f in unique_findings)
     if has_identity_issue:
         proactive.append({
             "id": "R-001",
@@ -108,13 +108,31 @@ def main():
         })
         
     # Check if crawl issues exist
-    has_crawl_issue = any("CRAWL-" in f.get('id', '') for f in unique_findings)
+    has_crawl_issue = any(f.get('id', '') == "CRAWL-001" for f in unique_findings)
     if has_crawl_issue:
         proactive.append({
             "id": "R-002",
             "title": "Publish an AI Policy / Terms of Service",
             "rationale": "If you block some AI bots in robots.txt to protect IP, explicitly state what is allowed in a `/ai-policy` page. This ensures bots that respect advanced directives handle your content correctly.",
             "suggested_action": "Add an AI Terms page and use <meta name=\"robots\" content=\"noai\"> if needed, rather than blanket disallows."
+        })
+        
+    import re
+    findings_str = json.dumps(unique_findings).lower()
+    if bool(re.search(r'\b(how|what|why)\b', findings_str)):
+        proactive.append({
+            "id": "R-003",
+            "title": "Add FAQPage Schema Markup",
+            "rationale": "The content appears to answer common questions. FAQ schema helps AI and search engines extract these Q&A pairs directly.",
+            "suggested_action": "Implement FAQPage structured data."
+        })
+        
+    if any(f.get('id', '') == "FRESH-002" for f in unique_findings):
+        proactive.append({
+            "id": "R-004",
+            "title": "Establish a Content Refresh Cadence",
+            "rationale": "Stale dates were detected on your content. AI models favor up-to-date information when providing answers.",
+            "suggested_action": "Set up a recurring schedule to review and update old content."
         })
     
     report = {
