@@ -1,10 +1,10 @@
 ---
 name: freshness-corroboration
 description: Audits a website for stale content dates and lacks of external corroboration signals.
-allowed-tools: [web_fetch, bash]
+allowed-tools:
+  - web_fetch
+  - bash
 license: MIT
-version: 1.1.0
-author: Antigravity
 ---
 # Freshness & Corroboration Audit
 ## When to use

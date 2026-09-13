@@ -39,3 +39,6 @@ An Agent Skill Marketplace that audits websites for AI discoverability and on-si
 - **No Headless Browser:** To keep runtime < 5 mins and avoid heavy dependencies, JS-rendering issues are detected heuristically (e.g., framework markers, `<noscript>` tags) instead of via Playwright.
 - **SPA Awareness:** Single Page Applications (React, Vue) are natively detected by scanning for CSR payload variables (e.g., `__INITIAL_STATE__`). When an SPA is detected, heuristic penalties for "Thin Content" are suppressed, and HTML-schema failures are degraded to "low confidence" since they might be injected dynamically via JS.
 - **Output Schema:** Extends the mandatory base schema to include categories, confidence markers, effort level, and beyond-problem proactive recommendations.
+
+? Validated against agentskills.io spec (skills-ref validate)
+

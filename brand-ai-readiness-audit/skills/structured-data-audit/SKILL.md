@@ -1,10 +1,10 @@
 ---
 name: structured-data-audit
 description: Audits a website for missing or malformed structured data (JSON-LD and microdata), OpenGraph tags, and evaluates plain-text factual clarity vs non-text media lock-in.
-allowed-tools: [web_fetch, bash]
+allowed-tools:
+  - web_fetch
+  - bash
 license: MIT
-version: 1.1.0
-author: Antigravity
 ---
 # Structured Data Audit
 ## When to use

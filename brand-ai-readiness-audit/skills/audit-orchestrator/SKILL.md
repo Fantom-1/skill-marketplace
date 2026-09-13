@@ -1,7 +1,9 @@
 ---
 name: audit-orchestrator
 description: Master entrypoint skill orchestrating 5 specialist audit skills (crawl-render, structured-data, freshness, entity-identity, engagement) to output a merged, prioritized Brand AI-Readiness Audit report.
-allowed-tools: [web_fetch, bash]
+allowed-tools:
+  - web_fetch
+  - bash
 license: MIT
 ---
 # Brand AI-Readiness Audit Orchestrator

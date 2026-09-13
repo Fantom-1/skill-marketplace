@@ -1,7 +1,9 @@
 ---
 name: content-extraction-audit
 description: Audits a website for LLM readability, checking for semantic layout tags, boilerplate ratios, and accessibility of core textual content to basic scraping bots.
-allowed-tools: [web_fetch, bash]
+allowed-tools:
+  - web_fetch
+  - bash
 license: MIT
 ---
 # Content Extraction Audit

@@ -1,7 +1,9 @@
 ---
 name: entity-identity-audit
 description: Audits a website for brand ambiguity, entity identity clarity, structured graph schema grounding, and social profile corroboration.
-allowed-tools: [web_fetch, bash]
+allowed-tools:
+  - web_fetch
+  - bash
 license: MIT
 ---
 # Entity Identity Audit
