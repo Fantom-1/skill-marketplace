@@ -174,20 +174,41 @@ def check_meta_tags(url, html, spa_detected):
     # Images missing alt text
     images = soup.find_all('img')
     images_no_alt = [img for img in images if not img.get('alt')]
-    if images and len(images_no_alt) >= 3 and (len(images_no_alt) / len(images)) > 0.5:
+    if images_no_alt:
         findings.append({
             "id": "SCHEMA-006",
             "skill_source": "structured-data-audit",
             "category": "engagement",
-            "title": "Facts locked in images (Missing alt text)",
+            "title": "Images missing alt text",
+            "severity": "high",
+            "confidence": confidence,
+            "evidence": spa_note + f"Found {len(images_no_alt)} <img> tags without 'alt' attribute; AI systems cannot interpret image content.",
+            "suggested_action": {
+                "summary": "Add descriptive alt text to all images",
+                "detail": "Use alt=\"[brief, descriptive text]\" to help AI understand visual content.",
+                "priority": "high",
+                "effort": "low"
+            }
+        })
+
+    # Embedded videos lacking descriptions
+    iframes = soup.find_all('iframe')
+    youtube_frames = [f for f in iframes if 'youtube' in str(f.get('src', '')).lower()]
+    untitled_yt = [f for f in youtube_frames if not f.get('title')]
+    if untitled_yt:
+        findings.append({
+            "id": "SCHEMA-007",
+            "skill_source": "structured-data-audit",
+            "category": "discoverability",
+            "title": "Embedded videos lack descriptions",
             "severity": "medium",
             "confidence": confidence,
-            "evidence": spa_note + f"{len(images_no_alt)} out of {len(images)} images are missing alt text.",
+            "evidence": spa_note + f"Found {len(untitled_yt)} YouTube/video embeds without title or aria-label.",
             "suggested_action": {
-                "summary": "Add descriptive alt attributes",
-                "detail": "If images contain facts or text, ensure they have alt tags so AI can extract the data.",
+                "summary": "Add titles to video embeds",
+                "detail": "Use title=\"[video description]\" or aria-label to make content discoverable.",
                 "priority": "medium",
-                "effort": "medium"
+                "effort": "low"
             }
         })
 
